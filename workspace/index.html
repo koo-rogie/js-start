@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript 실습</title>  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.js"></script>
+  <script src="js/mylib.js"></script>
+  <script>
+    $(function(){
+      $('.chapter-title').click(function() {
+        const openChapter = JSON.parse(localStorage.getItem('openChapter')) || [];
+        if ($(this).parent().toggleClass('chapter-open').hasClass('chapter-open')) {
+          $(this).children('button').text('예제목록 접기');
+          openChapter.push($(this).parent().index());
+        }else{
+          $(this).children('button').text('예제목록 펼치기');
+          openChapter.splice(openChapter.indexOf($(this).parent().index()), 1);
+        }
+        localStorage.setItem('openChapter', JSON.stringify(openChapter));
+      });
+      const openChapter = JSON.parse(localStorage.getItem('openChapter')) || [];
+      for(let chapter of openChapter){
+        $('.chapter').eq(chapter).addClass('chapter-open');
+      }
+    });
+
+    $(function() {
+      $('.paragraph > ul a').click(function(e) {
+        $('.paragraph > ul a').removeClass('clicked');
+        $(this).addClass('clicked');
+        const url = $(this).attr('href');
+        const extName = url.split('.')[1];
+        if (extName == 'js') {
+          e.preventDefault();
+          console.clear();
+          var title = $(this).text();
+          console.log('<<< ' + title + ' 예제 실행 결과(' + url + ') >>>');
+          $.get(url, function(data) {
+            if (data.trim) {
+              data = data.trim();
+            }
+            console.log(data);
+            console.log('\n\n');
+            
+            const script = document.createElement("script");
+            script.type = "module";
+            script.textContent = data;
+
+            const scriptResult = document.querySelector('#script-result');
+            scriptResult.firstElementChild?.remove();
+            scriptResult.appendChild(script);
+
+          }, 'text');
+        }
+      });
+    });
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="example-title">Javascript 실습</h1>
+    </header>
+    <div class="main-contents">
+      <section class="chapter">
+        <div class="chapter-title">
+        	<h3 tabindex="0">1강: 자바스크립트 기초 문법</h3>
+        	<button>예제목록 펼치기</button>
+        </div>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.1 자바스크립트 실행</h4>
+          <ul>
+            <li><a href="ch01/ex01-01.html">01-01 인라인 자바스크립트</a></li>
+            <li><a href="ch01/ex01-02.html">01-02 외부 자바스크립트 파일 로드</a></li>
+            <li><a href="ch01/ex01-03.html">01-03 웹 페이지 파싱 순서</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.2 기본 데이터 타입</h4>
+          <ul>
+            <li><a href="ch01/ex01-04.js">01-04 명령문과 주석</a></li>
+            <li><a href="ch01/ex01-05.js">01-05 변수 선언</a></li>
+            <li><a href="ch01/ex01-06.js">01-06 기본 데이터 타입 - Number, String, Boolean, undefined, null</a></li>
+            <li><a href="ch01/ex01-07.js">01-07 기본 데이터 타입 - BigInt</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.3 연산자</h4>
+          <ul>
+            <li><a href="ch01/ex01-08.js">01-08 산술 연산자 +, -, *, /, %, **</a></li>
+            <li><a href="ch01/ex01-09.js">01-09 대입 연산자 =, +=, -=, *=, /=, %=, **=</a></li>
+            <li><a href="ch01/ex01-10.js">01-10 증감 연산자 a++, a--, ++a, --a</a></li>
+            <li><a href="ch01/ex01-11.js">01-11 비교 연산자 >, >=, <, <=, ==, !=, ===, !==</a></li>
+            <li><a href="ch01/ex01-12.js">01-12 동등 연산자와 일치 연산자의 차이</a></li>
+            <li><a href="ch01/ex01-13.js">01-13 논리 연산자 &&, ||, !</a></li>
+            <li><a href="ch01/ex01-14.js">01-14 삼항 연산자 ?</a></li>
+            <li><a href="ch01/ex01-15.js">01-15 연산자 우선순위</a></li>
+            
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.4 조건문</h4>
+          <ul>
+            <li><a href="ch01/ex01-16.js">01-16 if문</a></li>
+            <li><a href="ch01/ex01-17.js">01-17 if-else문</a></li>
+            <li><a href="ch01/ex01-18.js">01-18 if-else if문</a></li>
+            <li><a href="ch01/ex01-19.js">01-19 switch문</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.5 반복문</h4>
+          <ul>
+            <li><a href="ch01/ex01-20.js">01-20 while문</a></li>
+            <li><a href="ch01/ex01-21.js">01-21 for문</a></li>
+            <li><a href="ch01/ex01-22.js">01-22 break, continue</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.6 참조 데이터 타입(Object, 객체)</h4>
+          <ul>
+            <li><a href="ch01/ex01-23.js">01-23 new Object() - 생성자 함수로 객체 생성</a></li>
+            <li><a href="ch01/ex01-24.js">01-24 JSON 표기법 - 리터럴 방식으로 객체 생성</a></li>
+            <li><a href="ch01/ex01-25.js">01-25 객체의 속성 관리</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.7 참조 데이터 타입(Array, 배열)</h4>
+          <ul>
+            <li><a href="ch01/ex01-26.js">01-26 배열 생성, 읽기, 쓰기</a></li>
+            <li><a href="ch01/ex01-27.js">01-27 모든 요소 읽기 1 - for 루프, for...of, for...in</a></li>
+            <li><a href="ch01/ex01-28.js">01-28 유사 배열 객체</a></li>
+            <li><a href="ch01/ex01-29.js">01-29 2차원 배열</a></li>            
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.8 참조 데이터 타입(Function, 함수)</h4>
+          <ul>
+            <li><a href="ch01/ex01-30.js">01-30 기본 함수</a></li>
+            <li><a href="ch01/ex01-31.js">01-31 매개변수를 가진 함수</a></li>
+            <li><a href="ch01/ex01-32.js">01-32 매개변수를 가진 함수 - 도어락</a></li>
+            <li><a href="ch01/ex01-33.js">01-33 반환값이 있는 함수</a></li>
+            <li><a href="ch01/ex01-34.js">01-34 반환값이 있는 함수 - 토스터</a></li>
+            <li><a href="ch01/ex01-35.js">01-35 최대값 반환 함수</a></li>
+            <li><a href="ch01/ex01-36.js">01-36 배열의 모든 요소를 출력하는 함수</a></li>
+            <li><a href="ch01/ex01-37.js">01-37 Call by Value와 Call by Reference 차이</a></li>
+            <li><a href="ch01/ex01-38.js">01-38 전역 변수와 지역 변수</a></li>
+            
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.9 ECMA Script6</h4>
+          <ul>
+            <li><a href="ch01/ex01-39.js">01-39 변수 선언문 var, let, const</a></li>
+            <li><a href="ch01/ex01-40.js">01-40 Template literals</a></li>
+            <li><a href="ch01/ex01-41.js">01-41 구조 분해 할당(Destructuring assignment)</a></li>
+            <li><a href="ch01/ex01-42.js">01-42 기본값 매개변수(Default parameters)</a></li>
+            <li><a href="ch01/ex01-43.js">01-43 나머지 매개변수(Rest parameters)</a></li>
+            <li><a href="ch01/ex01-44.js">01-44 전개 구문(Spread syntax)</a></li>
+          </ul>
+        </section>
+      </section>
+      <section class="chapter">
+				<div class="chapter-title">
+					<h3 tabindex="0">2강: 자바스크립트 함수</h3>
+					<button>예제목록 펼치기</button>
+				</div>
+        
+      </section>
+      <section class="chapter">
+				<div class="chapter-title">
+					<h3 tabindex="0">3강: 프로토타입, 상속과 클래스</h3>
+					<button>예제목록 펼치기</button>
+				</div>
+        
+      </section>
+      <section class="chapter">
+				<div class="chapter-title">
+					<h3 tabindex="0">4강: 클로저</h3>
+					<button>예제목록 펼치기</button>
+				</div>
+        
+      </section>
+      <section class="chapter">
+				<div class="chapter-title">
+					<h3 tabindex="0">5강: 클라이언트 사이드 자바스크립트 (Event, DOM, Ajax)</h3>
+					<button>예제목록 펼치기</button>
+				</div>
+        
+      </section>
+    </div>
+    <footer class="footer">
+      <p>Copyrightⓒ Javascript. All rights reserved.</p>
+    </footer>
+  </div>
+  <div id="script-result"></div>
+</body>
+</html>
