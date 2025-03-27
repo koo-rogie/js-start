@@ -1,0 +1,7 @@
+{
+  "files.readonlyInclude": {
+    "PPT/**": true,
+    "sample/**": true,
+    "workspace-ins/**": true
+  }
+}
