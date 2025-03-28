@@ -5,3 +5,8 @@
 let like = 13;
 
 console.log(`여기는 ${like} 콘솔이야!`);
+
+console.log("hello ");
+console.log("world!");
+
+console.log("hello world!"); console.log('hello world!!!!!');
