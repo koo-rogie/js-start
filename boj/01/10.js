@@ -34,3 +34,29 @@
 181720
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+const A = fileData[0];
+const B = fileData[1];
+
+console.log(A * (B % 10)); // B의 첫번째자리
+console.log(A * Math.floor((B % 100) / 10)); // B의 두번째자리
+console.log(A * Math.floor((B % 1000) / 100)); // B의 세번째자리
+console.log(A * B); // 최종결과
+
+/* ---------------------------------- */
+
+const fs = require("fs");
+const inputData = fs.readFileSync(0).toString().trim().split("\n");
+
+const a = parseInt(inputData[0]);
+const b = parseInt(inputData[1]);
+const c = parseInt(inputData[1][0]);
+const d = parseInt(inputData[1][1]);
+const e = parseInt(inputData[1][2]);
+
+console.log(a * e);
+console.log(a * d);
+console.log(a * c);
+console.log(a * b);
