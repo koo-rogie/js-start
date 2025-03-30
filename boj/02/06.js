@@ -39,3 +39,5 @@ KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간�
 0 13
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");

@@ -31,13 +31,49 @@ const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
 const A = parseInt(fileData[0]);
-//윤년은 연도가 4의 배수이면서
-const B = A * 4;
-// 100의 배수가 아닐 때 또는 400의 배수일 때이다.
-const C = A * 400;
-
-if (A) {
-  console.log("1");
+if (A % 4 == 0) {
+  if (A % 400 == 0) {
+    if (A % 100 === 0) {
+      console.log("1");
+    }
+  } else {
+    console.log("0");
+  }
 } else {
   console.log("0");
 }
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+구분선
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+// gpt가 해준거 제출 금지!!!
+// if ((A % 4 === 0 && A % 100 !== 0) || A % 400 === 0) {
+//   console.log("1");
+// } else {
+//   console.log("0");
+// }
