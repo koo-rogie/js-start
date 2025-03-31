@@ -42,3 +42,9 @@
 
 const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+let H = parseInt(fileData[0]);
+let M = parseInt(fileData[1]);
+
+// H는 최대가 23이다
+// M은 최대가 59이다
