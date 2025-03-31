@@ -1,8 +1,8 @@
 # 멋쟁이 사자처럼 Front-End BootCamp 13기: 자바스크립트 프로그래밍
 * 예제 테스트(GitHub Page): <https://febc-13.github.io/JS/workspace-ins>
 
-## 개발 환경 구축
-### 프로그램 설치
+# 개발 환경 구축
+## 프로그램 설치
 - 본인의 OS에 맞는 버전 다운로드 후 설치
   - Nodejs 설치 <https://nodejs.org/en/download/>
   - Visual Studio Code 설치 <https://code.visualstudio.com/download>
@@ -11,8 +11,8 @@
     - Postman <https://www.postman.com/downloads>
     - Bruno <https://www.usebruno.com/downloads>
     
-## 실습 준비
-### Github 저장소 복사
+# 실습 준비
+## Github 저장소 복사
 1. 자바스크립트 실습 Github 저장소
     * `https://github.com/FEBC-13/JS.git`
 2. 터미널 프로그램 실행 후 개발 수업에 사용할 폴더 생성 후 이동
@@ -31,7 +31,7 @@
     git clone https://github.com/FEBC-13/JS.git
     ```
 
-### 실습 저장소의 변경사항 동기화
+## 실습 저장소의 변경사항 동기화
 * github 저장소의 변경사항을 가져올 때
     ```sh
     git pull origin main
@@ -42,7 +42,7 @@
     npx degit https://github.com/FEBC-13/JS/sample/02 sample/02 
     ```
 
-### Visual Studio Code 설정
+## Visual Studio Code 설정
 1. VSCode 실행
 2. 프로젝트 선택
     * File > Open Folder... > febc13/01.js/JS 선택
@@ -57,11 +57,11 @@
       - Add Pattern > `workspace-ins/**` 입력한 후 OK 선택
       - Add Pattern > `sample/**` 입력한 후 OK 선택
 
-### sample 폴더 복사
+## sample 폴더 복사
 * sample/01/workspace 폴더를 복사해서 프로젝트 루트에 붙여넣기
 * 완성된 강사의 코드는 **workspace-ins** 폴더에서 확인할 수 있음
 
-### 웹 서버 구동
+## 웹 서버 구동
 1. VSCode의 터미널로 이동
     * VSCode 하단의 TERMINAL이 보이지 않으면 View > Terminal
 2. Live Server 구동
@@ -72,12 +72,12 @@
     * <http://127.0.0.1:8080>
     * <http://localhost:8080>
 
-### 실습 테스트
+## 실습 테스트
 * 각 예제 클릭해서 테스트
   - .js: Javascript 문법 관련 실습은 브라우저 개발자 도구 > 콘솔 탭에서 결과 확인
   - .html: DOM, Ajax 관련 실습은 새로운 화면으로 이동 후 테스트
 
-## 팁
+# 팁
 * VSCode에서 소스코드 비교
   - 비교할 두개의 파일을 VSCode에서 오픈(예시, student.js, ins.js)
   - student.js 파일이 활성화 되어있는 상태에서
@@ -85,26 +85,58 @@
   - 비교할 대상 파일 선택(ins.js)
   - student.js <-> ins.js 파일의 차이점 쉽게 확인 가능
 
-## 참고 사이트
-### 자바스크립트 학습
+# 수업 진도
+## 1주차 - 2일, 2025.03.27(목) ~ 2025.03.28(금)
+
+### 1일차(목)
+#### 오전(3시간)
+* [JS 레포지토리 README](https://github.com/FEBC-13/JS)
+* 💻 개발환경 구성
+
+#### 오후(5시간)
+* 📜 자바스크립트란? ~ 자바스크립트 코드의 위치
+  - 💻 [01-01 인라인 자바스크립트](./workspace-ins/ch01/ex01-01.html)
+* 백준 그룹 가입
+  - https://www.acmicpc.net/group/23092
+  - 💻 [boj/01/01.js](./workspace-ins/boj/01/01.js)
+
+### 2일차(금)
+#### 오전(3시간)
+* 📜 자바스크립트 코드의 위치
+  - 💻 [01-02 외부 자바스크립트 파일 로드](./workspace-ins/ch01/ex01-02.html)
+* 📜 명령문과 주석
+  - 💻 [01-04 명령문과 주석](./workspace-ins/ch01/ex01-04.js)
+
+#### 오후(3시간)
+* 📜 변수
+  - 💻 [01-05 변수 선언](./workspace-ins/ch01//ex01-05.js)
+* 📜 원시 타입
+  - 💻 [01-06 기본 데이터 타입 - Number, String, Boolean, undefined, null](./workspace-ins/ch01/ex01-06.js)
+* 📜 산술 연산자
+  - 💻 [01-08 산술 연산자 +, -, *, /, %, **](./workspace-ins/ch01/ex01-08.js)
+* 백준
+  - 💻 [boj/01/02.js](./workspace-ins/boj/01/02.js)
+
+# 참고 사이트
+## 자바스크립트 학습
 * 모던 자바스크립트 튜토리얼: <https://ko.javascript.info>
 * MDN 자바스크립트: <https://developer.mozilla.org/ko/docs/Web/JavaScript>
 
-### 온라인 웹 개발 에디터(HTML, CSS, JS)
+## 온라인 웹 개발 에디터(HTML, CSS, JS)
 * CodePen: <https://codepen.io>
 * Codesandbox: <https://codesandbox.io>
 * Stackblitz: <https://stackblitz.com>
 
-### 정규표현식 테스트
+## 정규표현식 테스트
 * <https://regexr.com>
 
-### API Client
-#### Postman
+## API Client
+### Postman
 * 홈페이지: <https://www.postman.com>
 * 다운로드: <https://www.postman.com/downloads>
 * 문서: <https://learning.postman.com/docs>
 
-#### Bruno
+### Bruno
 * 홈페이지: <https://www.usebruno.com>
 * 다운로드: <https://www.usebruno.com/downloads>
 * 문서: <https://docs.usebruno.com/introduction>
