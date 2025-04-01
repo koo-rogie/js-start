@@ -6,7 +6,14 @@
 */
 
 var x = 5;
-var y = x++ + ++x + x++ - x--; // 5 + 7 + 7 - 8 = 11
+var xP = x++;
+var XP = ++x;
+var Xp = x++;
+var xM = x--;
+console.log(xP, XP, Xp, xM);
+var y = xP + XP + Xp - xM;
+//      5  +  7  +  7  -  8
 
-// x는 5 + 6 + 7- 8
+// x의 값 변화 흐름
+// x = 5 → 6 → 7 → 8 → 마지막에 x-- 해서 7
 console.log(x, y);
