@@ -31,49 +31,21 @@ const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
 const A = parseInt(fileData[0]);
-if (A % 4 == 0) {
-  if (A % 400 == 0) {
-    if (A % 100 === 0) {
-      console.log("1");
-    }
-  } else {
-    console.log("0");
-  }
+
+if ((A % 4 == 0 && A % 100 != 0) || A % 400 == 0) {
+  console.log("1")
 } else {
   console.log("0");
+  
 }
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-구분선
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-// gpt가 해준거 제출 금지!!!
-// if ((A % 4 === 0 && A % 100 !== 0) || A % 400 === 0) {
-//   console.log("1");
+// if 첫 만남..
+// if (A % 4 == 0) {
+//   if (A % 100 != 0) {
+//     console.log("0");
+//   } else if (A % 400 == 0) {
+//     console.log("1");
+//   }
 // } else {
 //   console.log("0");
 // }
