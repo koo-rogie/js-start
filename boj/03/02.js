@@ -29,3 +29,12 @@
 7
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+let A = parseInt(fileData[0]);
+let B = parseInt(fileData[1]);
+
+for (let i = 0; i > 6; i++){
+  console.log(i);
+}

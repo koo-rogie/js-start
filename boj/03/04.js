@@ -26,8 +26,8 @@
 1 ≤ b ≤ 10
 
 예제 입력 1
-260000
-4
+260000 => 총 금액
+4 => 물건 갯수
 20000 5
 30000 2
 10000 6
@@ -135,4 +135,13 @@ No
 예제 출력 12
 No
 */
+
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+let allMplus = parseInt(fileData[0]);
+let allLplus = parseInt(fileData[1]);
+let listMoney = parseInt(fileData[2]);
+let listcount = parseInt(fileData[3]);
+
 

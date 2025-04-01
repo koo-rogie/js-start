@@ -28,10 +28,13 @@ N을 입력받은 뒤, 구구단 N단을 출력하는 프로그램을 작성하�
 */
 
 const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split("\n");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
 const A = fileData[0];
 
 for (var i = 1; i < 10; i++) {
-  console.log(`${A} * ${i}`);
+  let B = A * i;
+  console.log(`${A} * ${i} = ${B}`);
 }
+
+
