@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,windows,macos
 sample
 workspace-ins
+wiki.md
 ### macOS ###
 # General
 .DS_Store
