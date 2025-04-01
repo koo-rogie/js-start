@@ -23,6 +23,7 @@ const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
 const A = parseInt(fileData[0]);
 
+// if 문
 if (A >= 90) {
   console.log("A");
 } else if (A >= 80) {
@@ -34,3 +35,7 @@ if (A >= 90) {
 } else {
   console.log("F");
 }
+
+// 삼항 연산자
+let koo = A >= 90 ? "A" : A >= 80 ? "B" : A >= 70 ? "C" : A >= 60 ? "D" : "F";
+console.log(koo);

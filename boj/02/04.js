@@ -51,6 +51,7 @@ const fileData = fs.readFileSync(0).toString().trim().split("\n");
 let X = parseInt(fileData[0]);
 let Y = parseInt(fileData[1]);
 
+// if문 사용
 if (X > 0 && Y > 0) {
   console.log("1");
 } else if (X < 0 && Y > 0) {
@@ -60,3 +61,8 @@ if (X > 0 && Y > 0) {
 } else {
   console.log("4");
 }
+
+// koo
+let koo =
+  X > 0 && Y > 0 ? "1" : X < 0 && Y > 0 ? "2" : X < 0 && Y < 0 ? "3" : "4";
+console.log(koo);

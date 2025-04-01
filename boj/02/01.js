@@ -41,6 +41,7 @@ const fileData = fs.readFileSync(0).toString().trim().split(" ");
 const A = parseInt(fileData[0]);
 const B = parseInt(fileData[1]);
 
+// if문 쓰기
 if (A < B) {
   console.log("<");
 } else if (A > B) {
@@ -48,3 +49,7 @@ if (A < B) {
 } else {
   console.log("==");
 }
+
+// 삼항 연산자 사용하기
+let koo = A < B ? "<" : A > B ? ">" : "==";
+console.log(koo);
