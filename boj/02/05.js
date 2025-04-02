@@ -41,10 +41,71 @@
 */
 
 const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
+const inputData = fs.readFileSync(0).toString().trim().split(" ");
+let H = parseInt(inputData[0]);
+let M = parseInt(inputData[1]);
 
-let H = parseInt(fileData[0]);
-let M = parseInt(fileData[1]);
+let hPlus = H * 60;
+let mPlus = hPlus + M;
 
-// H는 최대가 23이다
-// M은 최대가 59이다
+let delM = mPlus - 45;
+
+let hspilt = Math.floor(delM / 60);
+let mspilt = delM % 60;
+
+if (hspilt < 0) {
+  hspilt += 24;
+} else {
+  hspilt = hspilt;
+}
+if (mspilt < 0) {
+  mspilt += 60;
+} else {
+  hspilt = hspilt;
+}
+
+console.log(hspilt, mspilt);
+
+/*
+const fs = require("fs");
+const input = fs.readFileSync(0).toString().trim().split(" ");
+let h = parseInt(input[0]);
+let m = parseInt(input[1]);
+
+let total = h * 60 + m - 45;
+if (total < 0) total += 1440; // 하루는 1440분
+
+let newH = Math.floor(total / 60);
+let newM = total % 60;
+
+console.log(newH, newM);
+*/
+
+/*
+const fs = require("fs");
+const input = fs.readFileSync(0).toString().trim().split(" ");
+let H = parseInt(input[0]);
+let M = parseInt(input[1]);
+
+let total = H * 60 + M - 45;
+let h = Math.floor((total + 1440) % 1440 / 60);
+let m = (total + 1440) % 60;
+
+console.log(h, m);
+*/
+
+
+/*
+// 
+const fs = require("fs");
+const [H, M] = fs.readFileSync(0).toString().trim().split(" ").map(Number);
+
+let totalMinutes = H * 60 + M - 45;
+if (totalMinutes < 0) totalMinutes += 1440; // 하루는 1440분
+
+const newH = Math.floor(totalMinutes / 60);
+const newM = totalMinutes % 60;
+
+console.log(newH, newM);
+
+*/
