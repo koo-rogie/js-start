@@ -40,4 +40,4 @@ console.log("홀수합게: ", sum);
 for (let i = 1; i <= 10; i += 2) {
   sum += i;
 }
-console.log("Wkr수합게: ", sum);
+console.log("짝수합게: ", sum);
