@@ -44,9 +44,17 @@ const inputData = fs.readFileSync(0).toString().trim().split("\n");
 
 const now = inputData[0].split(" ");
 
-const h = parseInt(now[0]); //17
-const m = parseInt(now[1]); //40
+let h = parseInt(now[0]); //17
+let m = parseInt(now[1]); //40
 
-const cookingTime = parseInt(inputData[1]); //80
+let cookingTime = parseInt(inputData[1]); //80
 
-console.log(h, m, cookingTime);
+let hPlus = h * 60;
+let totalTime = hPlus + m + cookingTime;
+
+let hspilt = Math.floor(totalTime / 60);
+let mspilt = totalTime % 60;
+
+hspilt = hspilt % 24;
+
+console.log(hspilt, mspilt);
