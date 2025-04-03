@@ -77,7 +77,7 @@ No
 
 예제 입력 7
 1000000000
-10
+1
 100000000 10
 예제 출력 7
 Yes
@@ -137,11 +137,20 @@ No
 */
 
 const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
 
-let allMplus = parseInt(fileData[0]);
-let allLplus = parseInt(fileData[1]);
-let listMoney = parseInt(fileData[2]);
-let listcount = parseInt(fileData[3]);
+const X = parseInt(fileData[0]); // 총 가격을 더한것
+let T = parseInt(fileData[0]); //라인수
+
+for (let i = 2; i < T + 2; i++) {
+  const data = fileData[i].split(" "); // i번째 줄에서 스페이스로 나누고
+  const A = parseInt(data[0]); // i줄에서 첫번째로 받는 케이스가 A
+  const B = parseInt(data[1]); // i 줄에서 두번째로 받는 케이스가 B
+  console.log(A + B); // A와 B를 더한다
+}
 
 
+// let allMplus = parseInt(fileData[0]);
+// let allLplus = parseInt(fileData[1]);
+// let listMoney = parseInt(fileData[2]);
+// let listcount = parseInt(fileData[3]);
