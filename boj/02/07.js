@@ -41,57 +41,41 @@
 4 4 4  
 예제 출력 4  
 14000  
-
-예제 입력 5  
-1 1 2  
-예제 출력 5  
-1100  
-
-예제 입력 6  
-5 5 1  
-예제 출력 6  
-1500  
-
-예제 입력 7  
-2 3 2  
-예제 출력 7  
-1200  
-
-예제 입력 8  
-1 2 3  
-예제 출력 8  
-300  
-
-예제 입력 9  
-6 6 6  
-예제 출력 9  
-16000  
-
-예제 입력 10  
-4 5 6  
-예제 출력 10  
-600  
-
 */
 
 const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
-const a = parseInt(fileData[0]);
-const b = parseInt(fileData[1]);
-const c = parseInt(fileData[2]);
+let sum = fileData;
+
+let a = parseInt(sum[0]);
+let b = parseInt(sum[1]);
+let c = parseInt(sum[2]);
+
+let num1 = 10_000;
+let num2 = 1_000;
+let num3 = 100;
 
 let total;
-// 같은 눈이 3개가 나오면 10,000원+(같은 눈)×1,000원의 상금을 받게 된다.
-if ((a == b) == c) {
-  total = 10000 + b * 1000;
+
+if (a === b && b === c && c === a) {
+  // 같은 눈이 3개가 나오면 10,000원+(같은 눈)×1,000원의 상금을 받게 된다.
+  total = num1 + a * num2;
   console.log(total);
-} else if ((a == b) !== c || (a == c) !== b || (b == c) !== a) {
-  total = 1000 + b * 100;
+} else if (a === b) {
+  // 같은 눈이 2개만 나오는 경우에는 1,000원+(같은 눈)×100원의 상금을 받게 된다.
+  total = num2 + a * num3;
   console.log(total);
-} else if ((a !== b) !== c) {
-  total = Math.max(a, b, c) * 100;
+} else if (b === c) {
+  // 같은 눈이 2개만 나오는 경우에는 1,000원+(같은 눈)×100원의 상금을 받게 된다.
+  total = num2 + b * num3;
+  console.log(total);
+} else if (c === a) {
+  // 같은 눈이 2개만 나오는 경우에는 1,000원+(같은 눈)×100원의 상금을 받게 된다.
+  total = num2 + c * num3;
+  console.log(total);
+} else {
+  // 모두 다른 눈이 나오는 경우에는 (그 중 가장 큰 눈)×100원의 상금을 받게 된다.
+  total = Math.max(a, b, c) * num3;
   console.log(total);
 }
-// 같은 눈이 2개만 나오는 경우에는 1,000원+(같은 눈)×100원의 상금을 받게 된다.
-// 모두 다른 눈이 나오는 경우에는 (그 중 가장 큰 눈)×100원의 상금을 받게 된다.
