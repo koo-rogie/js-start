@@ -29,3 +29,15 @@ Case #4: 9 + 8 = 17
 Case #5: 5 + 2 = 7
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+const T = parseInt(fileData[0]);
+
+for (let i = 1; i <= T; i++) {
+  const splitData = fileData[i].split(" "); //라인수
+  const A = parseInt(splitData[0]);
+  const B = parseInt(splitData[1]);
+  const C = A + B;
+  console.log(`Case #${i}: ${A} + ${B} = ${C}`);
+}

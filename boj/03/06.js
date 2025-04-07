@@ -51,3 +51,16 @@ Python을 사용하고 있다면, input 대신 sys.stdin.readline을 사용할 �
 2000
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+const T = parseInt(fileData[0]); //라인수
+
+let sumData = 0;
+for (let i = 1; i <= T; i++) {
+  const splitData = fileData[i].split(" "); //라인수
+  const A = parseInt(splitData[0]);
+  const B = parseInt(splitData[1]);
+  sumData = A + B; //라인수
+}
+console.log(sumData);

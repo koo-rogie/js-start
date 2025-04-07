@@ -29,3 +29,28 @@ Case #4: 17
 Case #5: 7
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+const T = parseInt(fileData[0]);
+
+for (let i = 1; i <= T; i++) {
+  const splitData = fileData[i].split(" "); //라인수
+  const A = parseInt(splitData[0]);
+  const B = parseInt(splitData[1]);
+  console.log(`Case #${i}: ${A + B}`);
+}
+
+//-----------------------------
+
+// const fs = require("fs");
+// const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+// let T = parseInt(fileData[0]); //라인수
+
+// for (let i = 1; i <= T; i++) {
+//   const data = fileData[i].split(" "); // i번째 줄에서 스페이스로 나누고
+//   const A = parseInt(data[0]); // i줄에서 첫번째로 받는 케이스가 A
+//   const B = parseInt(data[1]); // i 줄에서 두번째로 받는 케이스가 B
+//   console.log(`Case #${i}: ${A + B}`); // A와 B를 더한다
+// }
