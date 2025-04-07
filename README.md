@@ -8,10 +8,9 @@ git clone https://github.com/koo-rogie/js-start.git
 
 ```pgsql
 js-start
-├─ .vscode
+├─ .vscode                => # 선생님 파일 수정 금지
 ├─ PPT
 ├─ boj                    => # 백준 문제 그 외 다수
-├─ sample
 ├─ workspace
 │  ├─ ch01                => # 예제파일
 │  ├─ css
@@ -20,7 +19,7 @@ js-start
 │  └─ index.html
 ├─ .gitignore
 ├─ README-save.md         => # 선생님 리드밋 파일 분리
-├─ README.md
-├─ package-lock.json
-└─ package.json
+├─ README.md              => # 내 폴더의 리드밋
+├─ package-lock.json      
+└─ package.json           => # 라이브 서버 구동을 위한 서버 설치
 ```
