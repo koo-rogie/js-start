@@ -5,9 +5,9 @@
 매일 전날의 두배가 되는 쌀알을 받아서 모으면 몇일을 모아야 쌀알을 천만개 모을수 있을까?
 */
 
-let day = 1;
-let count = 1;
-let sum = 0;
+let day = 1; //날짜
+let count = 1; // 받을 쌀알 수
+let sum = 0; // 누적된 쌀알 수
 
 // while (count <= 100) {
 //   day++;
@@ -19,7 +19,7 @@ let sum = 0;
 // }
 
 while (sum < 1000_0000) {
-  // 날짜가 n이 되는 날까지
+  // 날짜가 n이 되는 날까지 , 언더바는 숫자 구분용 표시
   sum += count;
   count *= 2;
   day++;
