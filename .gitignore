@@ -1,14 +1,23 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,windows,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,windows,macos
-sample
+
+# 선생님 파일 업로드 제외용
+sample 
 workspace-ins
-wiki.md
 README-save.md
+
+# 내 git wiki 업로드 제외용
+wiki.md
+
+# code runner 업로드 제외용
+tempCode**.js
+
 ### macOS ###
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
+
 
 # Icon must end with two \r
 Icon
