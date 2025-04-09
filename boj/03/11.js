@@ -29,4 +29,20 @@
 17
 7
 */
+//TODO-오늘 은 이 문제를 풀어보자
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+console.log(fileData);
 
+let splitData = fileData[0].split(" ");
+
+// for (let i = 1; i < splitData.length; i++) {
+//   let a = parseInt(splitData[0]);
+//   let b = parseInt(splitData[1]);
+//   if (a === 0 && b === 0) {
+//     console.log(a + b);
+//     break;
+//   } else {
+//     console.log(a + b);
+//   }
+// }

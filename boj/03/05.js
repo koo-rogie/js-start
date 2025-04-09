@@ -47,4 +47,14 @@ long int
 예제 출력 2
 long long long long long int
 */
+//TODO-오늘 은 이 문제를 풀어보자
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
+const N = parseInt(fileData[0]);
+
+// 4바이트에서는 즉 4글자에서는 long int
+// 8바이트에서는 long long int
+// 12바이트에서는 long long long int
+// 16바이트에서는 long long long long int
+// 등등등

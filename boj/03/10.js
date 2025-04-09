@@ -24,3 +24,20 @@
 *****
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+const N = fileData[0];
+
+let star = "";
+let space = "";
+for (let i = 1; i < N; i++) {
+  for (let k = 1; k < N; k++) {
+    if (N < i + k) {
+      star += "*";
+    } else if (N == i + k) {
+      space += "  ";
+    }
+  }
+  console.log(star + space);
+}

@@ -28,3 +28,6 @@
 7
 */
 
+//TODO-오늘 은 이 문제를 풀어보자
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
