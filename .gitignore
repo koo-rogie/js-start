@@ -7,7 +7,7 @@ workspace-ins
 README-save.md
 
 # 내 git wiki 업로드 제외용
-wiki.md
+wiki**.md
 
 # code runner 업로드 제외용
 tempCode**.js
