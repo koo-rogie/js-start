@@ -56,11 +56,46 @@ const fileData = fs.readFileSync(0).toString().trim().split("\n");
 
 const T = parseInt(fileData[0]); //라인수
 
-let sumData = 0;
+console.time("single Logs"); // 시간 측정 시작
+let sumData = "";
 for (let i = 1; i <= T; i++) {
   const splitData = fileData[i].split(" "); //라인수
   const A = parseInt(splitData[0]);
   const B = parseInt(splitData[1]);
-  sumData = A + B; //라인수
+  sumData += A + B + "\n"; //라인수
 }
-console.log(sumData);
+console.log(sumData.trim());
+console.timeEnd("single Logs"); // 시간을 측정 끝
+
+/*
+// 주석 달기
+const fs = require("fs"); // 파일 시스템 모듈 불러오기 (입력 받기 위함)
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 입력 전체를 읽고 줄 단위로 나눔
+
+const T = parseInt(fileData[0]); // 첫 줄에서 테스트 케이스 개수를 정수로 파싱
+
+let sumData = ""; // 결과를 저장할 문자열 초기화
+for (let i = 1; i <= T; i++) {
+  const splitData = fileData[i].split(" "); // i번째 줄에서 공백 기준으로 A와 B 분리
+  const A = parseInt(splitData[0]); // A 값을 정수로 변환
+  const B = parseInt(splitData[1]); // B 값을 정수로 변환
+  sumData += A + B + "\n"; // A + B 결과를 문자열에 추가하고 줄바꿈
+}
+console.log(sumData.trim()); // 마지막 줄바꿈 제거하고 결과 출력
+
+
+*/
+
+// console.time("single Logs"); // 시간 측정 시작
+// for (let i = 0; i < 1000000; i++) {
+//   console.log("Line-" + i);
+// }
+// console.timeEnd("single Logs"); // 시간을 측정 끝 single Logs: 1:37.389 (m:ss.mmm)
+
+// console.time("single Logs"); // 시간 측정 시작
+// let sum = "";
+// for (let i = 0; i < 1000000; i++) {
+//   sum += "Line-" + i + "\n";
+// }
+// console.log(sum);
+// console.timeEnd("single Logs"); // 시간을 측정 끝 single Logs: 40.715s
