@@ -10,6 +10,8 @@ const numbers = [
   [6, 12, 18, 24],
 ];
 
+
+
 // 1차원 배열 출력하기 (세로 방향)
 console.log(numbers[0]); // [2, 4, 6, 8]
 console.log(numbers[1]); // [3, 6, 9, 12]
