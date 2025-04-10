@@ -43,6 +43,46 @@
 14000  
 */
 
+/**
+ * 표준 입력장치(콘솔)에서 여러줄로 입력된 줄당 여러 건의 데이터를 읽어서 숫자로 변환한 후
+ * 배열로 저장하여 반환한다.
+ * @returns {[]} 2차원 배열
+ */
+function getData() {
+  const fs = require("fs");
+  return fs
+    .readFileSync(0)
+    .toString()
+    .trim()
+    .split("\n")
+    .map((row) =>
+      row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val)))
+    );
+}
+
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const n1 = data[0][0];
+  const n2 = data[0][1];
+  const n3 = data[0][2];
+
+  let point = 0;
+  if (n1 === n2 && n2 === n3) {
+    point = 10000 + n1 * 1000;
+  } else if (n1 == n2 || n2 == n3) {
+    point = 1000 + n2 * 100;
+  } else if (n3 == n1) {
+    point = 1000 + n1 * 100;
+  } else {
+    point = Math.max(n1, n2, n3) * 100;
+  }
+  console.log(point);
+}
+main();
+
+/*
+// 계산 형식으로 한것
 const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
@@ -79,3 +119,4 @@ if (a === b && b === c && c === a) {
   total = Math.max(a, b, c) * num3;
   console.log(total);
 }
+*/
