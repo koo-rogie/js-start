@@ -29,6 +29,34 @@
 7
 */
 
+/**
+ * 표준 입력장치(콘솔)에서 여러줄로 입력된 줄당 여러 건의 데이터를 읽어서 숫자로 변환한 후
+ * 배열로 저장하여 반환한다.
+ * @returns {[]} 2차원 배열
+ */
+function getData() {
+  const fs = require("fs");
+  return fs
+    .readFileSync(0)
+    .toString()
+    .trim()
+    .split("\n")
+    .map((row) =>
+      row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val)))
+    );
+}
+
+function main() {
+  const data = getData();
+  for (let i = 1; i < data.length; i++) {
+    const rowArr = data[i];
+    console.log(rowArr[0] + rowArr[1]);
+  }
+}
+main();
+
+/*
+// 기존에 풀던 방식
 const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split("\n");
 
@@ -40,3 +68,4 @@ for (let i = 1; i <= T; i++) {
   const B = parseInt(data[1]); // i 줄에서 두번째로 받는 케이스가 B
   console.log(A + B); // A와 B를 더한다
 }
+*/
