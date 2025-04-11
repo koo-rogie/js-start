@@ -1,30 +1,70 @@
 /*
 2차원 배열
-fe 수강생의 이름을 저장하는 배열을 작성해보자.'
+FEBC 수강생의 이름을 저장하는 배열을 작성해 보자.
+각 캠프별(FEBC, BEBC, AOSBC) 수강생을 2차원 배열로 관리
 */
 
-// 1차원 배열
-const festudents13 = ["임한길", "이호정", "김현지", "이도율", "박선영", "김하영"];
-const festudents12 = ["이서윤", "김지안", "노윤호", "장하린", "백도윤", "오예린"];
-const festudents11 = ["한지우", "류서준", "배가은", "민태윤", "서하진", "조은채"];
-// 2차원 배열
-const festudents = [festudents13, festudents12, festudents11];
+// 각 캠프별 수강생 배열을 개별적으로 선언한 경우 (참고용)
+// const febcStudents = ['십이기핑', '몰라핑', '안가르쳤어핑', '임한길', '이호정', '김현지', '이도울', '박선영', '김하영'];
+// const bebcStudents = ['하츄핑', '키키핑', '주르핑', '아잉핑', '바로핑', '라라핑', '아자핑'];
+// const aosbcStudents = ['부투핑', '무셔핑', '차나핑', '안드핑', '로이핑', '애플핑', '스티브핑', '잡스핑'];
 
-// 1차원 배열
-const bestudents13 = ["정태훈", "윤도현", "박서진", "김하윤", "오세찬", "최다인"];
-const bestudents12 = ["이주호", "강민하", "배연우", "문가람", "홍준기", "신나영"];
-const bestudents11 = ["조하민", "류예진", "김태영", "장유나", "서민재", "노지후"];
+// 2차원 배열로 모든 캠프의 수강생을 관리
+// lionStudents[0] : FEBC 수강생
+// lionStudents[1] : BEBC 수강생
+// lionStudents[2] : AOSBC 수강생
+const lionStudents = [
+  ["십이기핑", "몰라핑", "안가르쳤어핑", "임한길", "이호정", "김현지", "이도울", "박선영", "김하영"], // febc
+  ["하츄핑", "키키핑", "주르핑", "아잉핑", "바로핑", "라라핑", "아자핑"],
+  ["부투핑", "무셔핑", "차나핑", "안드핑", "로이핑", "애플핑", "스티브핑", "잡스핑"],
+];
 
-// 2차원 배열
-const bestudents = [bestudents13, bestudents12, bestudents11];
+// 전체 수강생 수를 저장할 변수
+let sum = 0;
+// '바로핑' 학생의 존재 여부를 체크할 변수
+let isInStudent = false;
 
-// 1차원 배열
-const dsstudents13 = ["이정우", "안세연", "황도윤", "백하윤", "임채은", "강서준"];
-const dsstudents12 = ["최지안", "김성훈", "박다은", "송하린", "정시우", "조은지"];
-const dsstudents11 = ["윤지훈", "서예빈", "오민석", "장유림", "배시현", "하도연"];
+// 각 캠프를 순회하면서 처리
+for (let i = 0; i < lionStudents.length; i++) {
+  // 현재 처리중인 캠프의 수강생 배열
+  const campStudents = lionStudents[i];
+  // 각 캠프의 수강생이 몇명인가?
+  console.log("수강생", campStudents.length, "명");
+  // 전체 수강생 수 누적
+  sum += campStudents.length;
 
-// 2차원 배열
-const dsstudents = [dsstudents13, dsstudents12, dsstudents11];
-// 3차원 배열
-const students = [festudents, bestudents, dsstudents];
-console.log(students);
+  // 바로핑이라는 수강생이 있는가?
+  for (let k = 0; k < campStudents.length; k++) {
+    // febc 모든 수강생 이름 출력
+    if (i === 0) console.log(campStudents[k]);
+    if (campStudents[k] === "바로핑") {
+      isInStudent = true;
+      break; // '바로핑'을 찾으면 더 이상 검색할 필요가 없으므로 반복문 종료
+    }
+  }
+}
+
+// '바로핑' 학생 존재 여부 출력
+if (isInStudent) {
+  console.log("바로핑 있음.");
+} else {
+  console.log("바로핑 없음.");
+}
+
+// 전체 수강생이 몇명인가?
+console.log("전체 수강생", sum);
+
+// febc에 박선영이 존재하는가
+let isInPark = false;
+for (let i = 0; i < lionStudents[0].length; i++) {
+  if (lionStudents[0][i] == "박선영") {
+    isInPark = true;
+    break;
+  }
+}
+isInPark = lionStudents[0].includes("박선영");
+if (isInPark) {
+  console.log("있다");
+} else {
+  console.log("없다");
+}
