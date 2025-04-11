@@ -27,12 +27,45 @@
 공이 들어있지 않은 바구니는 0을 출력한다.
 
 예제 입력 1 
-5 4
-1 2 3
-3 4 4
-1 4 1
-2 2 2
+5 4      // 바구니 5개, 명령 4번
+1 2 3    // 1~2번 바구니에 3번 공
+3 4 4    // 3~4번 바구니에 4번 공
+1 4 1    // 1~4번 바구니에 1번 공
+2 2 2    // 2번 바구니에 2번 공
 예제 출력 1 
 1 2 1 1 0
 */
 
+/**
+ * 표준 입력장치(콘솔)에서 여러줄로 입력된 줄당 여러 건의 데이터를 읽어서 숫자로 변환한 후
+ * 배열로 저장하여 반환한다.
+ * @returns {[]} 2차원 배열
+ */
+function getData() {
+  const fs = require("fs");
+  return fs
+    .readFileSync(0)
+    .toString()
+    .trim()
+    .split("\n")
+    .map((row) => row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val))));
+}
+
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const n = data[0][0];
+  let result = new Array(n).fill(0);
+
+  for (let i = 1; i < data.length; i++) {
+    const rowArr = data[i]; // i=1 => [1,2,3] i=2 => [3 4 4 ]
+    const x = rowArr[0];
+    const y = rowArr[1];
+    const z = rowArr[2];
+    for (let k = x; k <= y; k++) {
+      result[k - 1] = z;
+    }
+  }
+  console.log(result.join(" ")); // join을 하면 [1,2,1,1,0]인 배열을 문자열로 바꿔준다?
+}
+main();
