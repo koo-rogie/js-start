@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="todo">
+      <header>
+        <h1>Todo List - 목록 조회 : 🪑</h1>
+      </header>
+      <div id="main">
+        <div id="container">
+          <ul>
+            <li>
+              <h2>쇼핑 목록</h2>
+              <div class="todoinput">
+                <input type="text" autofocus />
+                <button type="button" onclick="addItem()">추가</button>
+              </div>
+              <ul class="todolist">
+                <li>
+                  <span>1</span>
+                  <span><s>샘플1</s></span>
+                  <button type="button" onclick="deleteItem()">삭제</button>
+                </li>
+                <li>
+                  <span>2</span>
+                  <span>샘플2</span>
+                  <button type="button" onclick="deleteItem()">삭제</button>
+                </li>
+                <li>
+                  <span>3</span>
+                  <span>샘플3</span>
+                  <button type="button" onclick="deleteItem()">삭제</button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer>
+        <p>멋쟁이 사자처럼 FrontEnd BootCamp</p>
+      </footer>
+      <script>
+        /**
+         * 한 건의 Todo 객체를 받아서, DOM 요소로 생성해 반환합니다.
+         * @param {Object} item - Todo 항목 객체
+         * @param {number} item.no - 고유 번호
+         * @param {string} item.title - 할 일 제목
+         * @param {boolean} item.done - 완료 여부
+         * @returns {HTMLElement} 생성된 <li> DOM 요소
+         */
+        function getTodoItemElem(item) {}
+
+        /**
+         * 새로운 할 일을 추가합니다.
+         * @param {string} title - 추가할 할 일의 제목
+         */
+        function addItem(title) {
+          const input = document.querySelector(".input:value"); // input 요소 찾기
+          
+        }
+
+        /**
+         * 특정 할 일의 완료 상태를 토글합니다. (완료 ↔ 미완료)
+         * @param {number} no - 토글할 할 일의 고유 번호
+         */
+        function toggleDone(no) {
+          const deleteItem = document.querySelectorAll(".todolist>li>span:nth-child(2)");
+        }
+
+        /**
+         * 특정 할 일을 삭제합니다.
+         * @param {number} no - 삭제할 할 일의 고유 번호
+         */
+        function deleteItem(no) {}
+      </script>
+    </div>
+  </body>
+</html>
