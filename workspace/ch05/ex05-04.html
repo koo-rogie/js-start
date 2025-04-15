@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 처리</title>
+    <script></script>
+  </head>
+  <body>
+    <h1>쇼핑 목록</h1>
+    <div>
+      <button onclick="console.log('여기여기')">눌러보쇼</button>
+    </div>
+    <script>
+      const btn = document.querySelector("button");
+      // 이벤트 등록
+      // 1. elem.on<이벤트> 속성에 이밴트 핸들러 추가
+      // DOM Level 0 방식(비표준 방식)
+      btn.onclick = () => {
+        console.log("눌렀어");
+      };
+      btn.onclick = () => {
+        console.log("눌렀어요?");
+      };
+      // 3. addEventListener() 메서드로 이벤트 등록
+      // add라서 이벤트가 추가됨
+      // DOM Level 2 방식(표준 방식)
+      btn.addEventListener("click", () => {
+        console.log("눌렀습니다.");
+      });
+      btn.addEventListener("click", () => {
+        console.log("눌렀슴다.");
+      });
+    </script>
+  </body>
+</html>
