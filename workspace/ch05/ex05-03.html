@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑목록</title>
+    <style>
+      div {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 20px;
+      }
+      button {
+        /* outline: none; */
+        border: none;
+      }
+      ul {
+        counter-reset: number 0;
+      }
+    </style>
+    <script>
+      // html 문서 로딩 완료(Dom 객체 생성완료), 이미지 css 같은 외부 컨텐츠 로딩 환료 후에 발생하는 이벤드
+      document.addEventListener("load", () => {});
+
+      // html 문서 로딩 완료(DOM 객체 생성완료) 후에 발생하는 이벤트
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn1 = document.querySelector("div > button"); // 첫번째 버튼 찾기
+        const btn2 = btn1.nextElementSibling; // 두번째 버튼 찾기
+        const btn3 = btn2.nextElementSibling; // 세번째 버튼 찾기
+        const btn4 = btn3.nextElementSibling; // 세번째 버튼 찾기
+
+        // 이밴트 등록 방법
+        // 1. elem.on<이벤트> 속성에 이밴트 핸들러 추가
+        btn1.onclick = () => {
+          const movies = document.querySelector("#movies");
+          // console.log(movies);
+          //자식 li찾고 그중에 두번째 요소
+          const chsecondLi = movies.getElementsByTagName("li")[1];
+
+          // 첫번째 영화를 찾은 다음에 두번째 영화를 찾기
+          const firstLi = movies.firstElementChild;
+          const secondLi = firstLi.nextElementSibling;
+          console.log(secondLi?.firstChild.nodeValue);
+          //textContent: 요소 노드의 내부 텍스트노드의 문자열 값을 가지고 있는 속성
+          console.log(secondLi?.textContent);
+        };
+        // 이밴트 등록 방법 3: addEventListener()
+        btn4.addEventListener("click", function () {
+          const targetList = document.querySelectorAll(".list");
+          for (let i = 0; i < targetList.length; i++) {
+            const addFirstLi = targetList[i].firstElementChild;
+
+            // 첫번째 항목 삭제
+
+            // 삭제방법1 : remove()
+            // if (addFirstLi) {
+            //   // 첫번째 항목 찾아서 콘솔에 출력
+            //   console.log(addFirstLi.innerHTML);
+            //   // 첫번째 항목이 존제하면 삭제
+            //   addFirstLi.remove();
+            // }
+
+            // 삭제방법2 : removeChild()
+            //addFirstLi?.remove(); // 옵셔널 체이닝 =>
+
+            // 삭제방법3: 나를 기준으로 나의 부모요소참조하여 첫번째요소 삭제
+            targetList[i].removeChild(addFirstLi);
+          }
+        });
+      });
+
+      // 마지막에 우유 추가
+      function addLastMilk() {
+        console.log("우유추가 예정");
+        const shopingList = document.getElementById("purchases");
+        const newLi = document.createElement("li"); // li요소를 생성한다
+        const newTxt = document.createTextNode("우유"); // 우유라는 텍스트를 생성한다
+
+        // ⚠️ 추가 전 상태 확인
+        console.log("추가하기 전: ", newLi.childNodes, newLi.firstChild, newLi.lastChild); // (자식 노드들, 첫 번째 자식 노드, 마지막 자식 노드)
+        console.log("추가하기 전: ", newLi.childNodes, "(자식요소)"); // li 요소 안에 있는 자식 노드 리스트
+        console.log("추가하기 전: ", newLi.firstChild, "(첫번째 자식)"); // 첫 번째 자식 노드 (없음 → null)
+        console.log("추가하기 전: ", newLi.lastChild, "(마지막 자식)"); // 마지막 자식 노드 (없음 → null)
+        console.log("-----");
+
+        // ⚙️ 텍스트 노드를 li에 추가
+        newLi.appendChild(newTxt);
+
+        // ✅ 추가 후 상태 확인
+        console.log("추가한 후: ", newLi.childNodes, newLi.firstChild, newLi.lastChild); // (자식 노드들, 첫 번째 자식 노드, 마지막 자식 노드)
+        console.log("추가한 후: ", newLi.childNodes, "(자식요소)"); // 텍스트 노드 "우유"가 들어간 자식 노드 리스트
+        console.log("추가한 후: ", newLi.firstChild, "(첫번째 자식)"); // 첫 번째 자식 노드 → 텍스트 노드 "우유"
+        console.log("추가한 후: ", newLi.lastChild, "(마지막 자식)"); // 마지막 자식 노드도 동일 → 텍스트 노드 "우유"
+        console.log("-----");
+
+        // 🧺 쇼핑 목록에 li를 추가
+        shopingList.appendChild(newLi);
+
+        // innerHTML 속성: 요소노드의 내부 HTML 코드값을 문자열로 가지고 있는 속성
+        // console.log("innerHTML:", shopingList.innerHTML);
+        // console.log("outerHTML:\n ", shopingList.outerHTML);
+        /*
+        // 첫번째 방법
+        const newShopingList = shopingList.innerHTML + "  <li>우유</li>\n\t";
+        shopingList.innerHTML = newShopingList;
+        */
+
+        // 두번째 방법
+        // shopingList.innerHTML += "  <li>우유</li>\n\t";
+      }
+
+      // 맨 앞에 우유 추가
+      function addFirstMilk() {
+        console.log("우유추가 예정");
+        const shopingList = document.getElementById("purchases");
+        const newLi = document.createElement("li"); // li요소를 생성한다
+        const newTxt = document.createTextNode("우유"); // 우유라는 텍스트를 생성한다
+
+        // ⚠️ 추가 전 상태 확인
+        console.log("추가하기 전: ", newLi.childNodes, newLi.firstChild, newLi.lastChild); // (자식 노드들, 첫 번째 자식 노드, 마지막 자식 노드)
+        console.log("추가하기 전: ", newLi.childNodes, "(자식요소)"); // li 요소 안에 있는 자식 노드 리스트
+        console.log("추가하기 전: ", newLi.firstChild, "(첫번째 자식)"); // 첫 번째 자식 노드 (없음 → null)
+        console.log("추가하기 전: ", newLi.lastChild, "(마지막 자식)"); // 마지막 자식 노드 (없음 → null)
+        console.log("-----");
+
+        // ⚙️ 텍스트 노드를 li에 추가
+        newLi.appendChild(newTxt);
+
+        // ✅ 추가 후 상태 확인
+        console.log("추가한 후: ", newLi.childNodes, newLi.firstChild, newLi.lastChild); // (자식 노드들, 첫 번째 자식 노드, 마지막 자식 노드)
+        console.log("추가한 후: ", newLi.childNodes, "(자식요소)"); // 텍스트 노드 "우유"가 들어간 자식 노드 리스트
+        console.log("추가한 후: ", newLi.firstChild, "(첫번째 자식)"); // 첫 번째 자식 노드 → 텍스트 노드 "우유"
+        console.log("추가한 후: ", newLi.lastChild, "(마지막 자식)"); // 마지막 자식 노드도 동일 → 텍스트 노드 "우유"
+        console.log("-----");
+
+        // 🧺 쇼핑 목록에 li를 추가
+        shopingList.insertBefore(newLi, shopingList.firstChild);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>쇼핑목록</h1>
+
+    <div>
+      <button type="button">두번째 영화 찾기</button>
+      <!-- 이밴트 등록 방법 2: html 요소의 on<event> 속성의 값으로 이밴트 발생시 실행 할 코드를 등록 -->
+      <button type="button" onclick="addLastMilk();console.log('우유추가 완료');" class="lastBtn">마지막에 우유 추가</button>
+      <button type="button" onclick="addFirstMilk();console.log('우유추가 완료');" class="firstBtn">맨 앞에 우유 추가</button>
+      <button type="button">첫번째 항목 삭제</button>
+    </div>
+
+    <p>마트에서 사야할 목록</p>
+    <ul id="purchases" class="list">
+      <li>두부</li>
+      <li>계란</li>
+      <li>라면</li>
+    </ul>
+
+    <p>보고싶은 영화 목록</p>
+    <ul id="movies" class="list">
+      <li>어밴져스</li>
+      <li>다크나이트</li>
+      <li>미션 임파서블</li>
+    </ul>
+  </body>
+</html>
