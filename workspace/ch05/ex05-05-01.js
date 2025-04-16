@@ -13,7 +13,7 @@ function getTodoItemElem(item) {
 
   // 태그에 텍스트 추가
   noElem.appendChild(noTxt); // <span> 요소에 번호 텍스트 추가 => <span>3</span>
-  titleElem.appendChild(titleTxt); // <span> 요소에 제목 텍스트 추가 =>  <span>샘플3</span>
+  titleElem.appendChild(titleTxt);
   deleteElem.setAttribute("type", "button"); // <button> 요소에 type 속성 추가 => <button type="button">
   titleElem.setAttribute("tabindex", 0); // <span> 요소에 tabindex 속성 추가 => <span tabindex="0">샘플3</span>
   deleteElem.appendChild(deleteTxt); // <button> 요소에 삭제 버튼 텍스트 추가 => <button type="button">삭제</button>
@@ -23,9 +23,10 @@ function getTodoItemElem(item) {
   liElem.appendChild(titleElem); // <li> 요소에 제목 추가 => <li><span>3</span><span>샘플3</span></li>
   liElem.appendChild(deleteElem); // <li> 요소에 삭제 버튼 추가 => <li><span>3</span><span>샘플3</span><button type="button">삭제</button></li>
 
-  //liElem에 cusom  속성추가
+  //liElem에 cusom  속성추가 data-no, data-boolean
   // <li data-no="n">
-  liElem.dataset.no = item.no; // <li data-no="3"><span>3</span><span>샘플3</span><button type="button">삭제</button></li>
+  liElem.dataset.no = item.no; // <li data-no="3"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
+  liElem.dataset.boolean = item.done; // <li data-no="3" data-boolean="false"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
 
   //이벤트방법(1) : DOM Level2 방식
   deleteElem.addEventListener("click", function (event) {
@@ -41,7 +42,7 @@ function getTodoItemElem(item) {
   deleteElem.setAttribute("onclick", `deleteItem(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
 
   // 완료/ 미완료 처리
-  titleElem.setAttribute("onclick", `toggleDone(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
+  titleElem.setAttribute("onclick", `toggleDone(${(item.no, item.done)})`); // 삭제 버튼 클릭 시 deleteItem() 호출
 
   // 리턴함
   return liElem;
@@ -86,14 +87,32 @@ function addItem(title) {
  * 특정 할 일의 완료 상태를 토글합니다. (완료 ↔ 미완료)
  * @param {number} no - 토글할 할 일의 고유 번호
  */
-function toggleDone(no) {
-  const centerLien = document.createElement("s");
-  console.log(centerLien);
-  titleElem.appendChild(centerLien);
-  centerLien.appendChild(titleTxt);
+function toggleDone(no, done, title) {
+  console.log(no, done);
+  const targetNo = document.querySelector(`.todolist > li[data-no="${no}"]`);
+  const targetDone = document.querySelector(`.todolist > li[data-boolean="${done}"]`);
+  console.log(targetNo, targetDone);
 
-
-  console.log(no);
+  if (targetDone === true) {
+    // 완성 상태일때
+    // item.title이 이 안에 없기때문에 안불러와짐
+    // 긋기 취소
+    const titleElem = document.createElement("span"); // <span> 요소 생성 => 할일 목록
+    const titleTxt = document.createTextNode(title); // 할일의 제목 생성
+    titleElem.appendChild(titleTxt); // <span> 요소에 완료된 할일 목록 추가 => <span><s></s></span>
+    // false로 변경
+    done = false;
+  } else {
+    // 미완성 상태일때
+    // 긋고
+    const titleElem = document.createElement("span"); // <span> 요소 생성 => 할일 목록
+    const titleTxt = document.createTextNode(title); // 할일의 제목 생성
+    const centerLienElem = document.createElement("s"); // <s> 요소 생성 => 완료된 할일 목록
+    centerLienElem.appendChild(titleTxt); // <s> 요소에 제목 텍스트 추가 => <s>샘플3</s>
+    titleElem.appendChild(centerLienElem); // <span> 요소에 완료된 할일 목록 추가 => <span><s></s></span>
+    // true로 변경
+    done = true;
+  }
 }
 
 /**
