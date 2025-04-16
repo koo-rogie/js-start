@@ -3,12 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TODOLIST</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        /* outline: none; */
+        box-sizing: border-box;
+        list-style: none;
+      }
+      body {
+        text-align: center;
+        padding-block: 100px;
+        height: 100vh;
+        background-color: rgb(53, 53, 53);
+        position: relative;
+        color: #fff;
+      }
+      header {
+        border-bottom: 1px solid black;
+      }
+      .todoinput {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      #container {
+        background-color: rgb(40, 82, 99);
+        padding-block: 3.125rem;
+      }
+      input {
+        padding-inline: 10px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+      .todolist {
+        font-size: 0;
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 16px;
+          gap: 10px;
+          border-radius: 30px;
+          border: 1px solid white;
+          margin: 16px;
+          padding: 16px;
+          span:nth-child(1) {
+            display: inline-block;
+            width: 32px;
+            font-weight: 700;
+          }
+          span:nth-child(2) {
+            display: inline-block;
+            width: 300px;
+          }
+        }
+      }
+      footer {
+        color: gray;
+      }
+    </style>
   </head>
   <body>
     <div id="todo">
       <header>
-        <h1>Todo List - 목록 조회 : 🪑</h1>
+        <h1>Todo List - 목록 조회 🙂</h1>
       </header>
       <div id="main">
         <div id="container">
@@ -16,67 +82,34 @@
             <li>
               <h2>쇼핑 목록</h2>
               <div class="todoinput">
-                <input type="text" autofocus />
-                <button type="button" onclick="addItem()">추가</button>
+                <input type="text" autofocus onkeyup="handleKeyup(event)" />
+                <button type="button" onclick="handleAdd()">추가</button>
               </div>
               <ul class="todolist">
-                <li>
+                <!-- <li data-no="1">
                   <span>1</span>
                   <span><s>샘플1</s></span>
                   <button type="button" onclick="deleteItem()">삭제</button>
                 </li>
-                <li>
+                <li data-no="2">
                   <span>2</span>
                   <span>샘플2</span>
                   <button type="button" onclick="deleteItem()">삭제</button>
                 </li>
-                <li>
+                <li data-no="3">
                   <span>3</span>
                   <span>샘플3</span>
                   <button type="button" onclick="deleteItem()">삭제</button>
-                </li>
+                </li> -->
               </ul>
             </li>
           </ul>
         </div>
       </div>
       <footer>
-        <p>멋쟁이 사자처럼 FrontEnd BootCamp</p>
+        <p>&copy; 멋쟁이 사자처럼 FrontEnd BootCamp</p>
       </footer>
-      <script>
-        /**
-         * 한 건의 Todo 객체를 받아서, DOM 요소로 생성해 반환합니다.
-         * @param {Object} item - Todo 항목 객체
-         * @param {number} item.no - 고유 번호
-         * @param {string} item.title - 할 일 제목
-         * @param {boolean} item.done - 완료 여부
-         * @returns {HTMLElement} 생성된 <li> DOM 요소
-         */
-        function getTodoItemElem(item) {}
-
-        /**
-         * 새로운 할 일을 추가합니다.
-         * @param {string} title - 추가할 할 일의 제목
-         */
-        function addItem(title) {
-          const input = document.querySelector(".input:value"); // input 요소 찾기
-          
-        }
-
-        /**
-         * 특정 할 일의 완료 상태를 토글합니다. (완료 ↔ 미완료)
-         * @param {number} no - 토글할 할 일의 고유 번호
-         */
-        function toggleDone(no) {
-          const deleteItem = document.querySelectorAll(".todolist>li>span:nth-child(2)");
-        }
-
-        /**
-         * 특정 할 일을 삭제합니다.
-         * @param {number} no - 삭제할 할 일의 고유 번호
-         */
-        function deleteItem(no) {}
-      </script>
+      <script src="./ex05-05-01.js"></script>
     </div>
   </body>
 </html>
