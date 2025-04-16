@@ -27,17 +27,22 @@ function getTodoItemElem(item) {
   // <li data-no="n">
   liElem.dataset.no = item.no; // <li data-no="3"><span>3</span><span>샘플3</span><button type="button">삭제</button></li>
 
+  //이벤트방법(1) : DOM Level2 방식
   deleteElem.addEventListener("click", function (event) {
     // 1. 삭제의 첫번째 방법
     // const btn = event.target; // 클릭 이밴트가 발생한 요소 (button)
     // const liNode = btn.closest("li"); // 클릭한 버튼의 조상 요소 중에서 가장 가까운 li 요소를 찾음
     // deleteItem(liNode.dataset.no); // li 요소의 data-no 속성값을 가져옴
-
     // 2. 삭제의 두번째 방법
+    // 클로저 단원에서 이상한 부분 확인
     // deleteItem(item.no); // item.no를 이용하여 삭제
   });
-  // 3. 삭제의 세번째 방법
+  // 3. 삭제의 세번째 방법  : DOM Level0 방식
   deleteElem.setAttribute("onclick", `deleteItem(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
+
+  // 완료/ 미완료 처리
+  titleElem.setAttribute("onclick", `toggleDone(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
+
   // 리턴함
   return liElem;
 }
@@ -81,7 +86,15 @@ function addItem(title) {
  * 특정 할 일의 완료 상태를 토글합니다. (완료 ↔ 미완료)
  * @param {number} no - 토글할 할 일의 고유 번호
  */
-function toggleDone(no) {}
+function toggleDone(no) {
+  const centerLien = document.createElement("s");
+  console.log(centerLien);
+  titleElem.appendChild(centerLien);
+  centerLien.appendChild(titleTxt);
+
+
+  console.log(no);
+}
 
 /**
  * 특정 할 일을 삭제합니다.
