@@ -117,6 +117,9 @@ function toggleDone(no) {
   if (done) {
     // done이 treu일때 => 완료를 미완료로 변환
     // <span></span>
+    titleElem.appendChild(titleElem.firstChild.firstChild);
+    titleElem.firstChild.remove(); // <span> 요소의 첫 번째 자식 노드(텍스트 노드)를 제거
+    // <span><s>title</s></span> => <span>title</span>
   } else {
     // done이 false일때 => 미완료를 완료로 변환
     // <span><s></s></span>
@@ -124,6 +127,7 @@ function toggleDone(no) {
     sElem.appendChild(titleElem.firstChild); // => <s>title</s> <span></span>
     titleElem.appendChild(sElem); // => <span><s>title</s></span>
   }
+  targetLi.dataset.done = !done; // li 요소의 data-done 속성값을 반전시킴
 
   console.log("no의 번호는?", no);
 }
