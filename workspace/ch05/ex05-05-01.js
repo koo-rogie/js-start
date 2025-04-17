@@ -1,4 +1,8 @@
-// 한건의 Todo 객체를 받아서 DOM 객체로 만들어 반환
+/**
+ * Todo 아이템 하나를 표현하는 DOM 요소를 생성하는 함수
+ * @param {Object} item - Todo 아이템 객체 {no: number, title: string, done: boolean}
+ * @returns {HTMLElement} 생성된 Todo 아이템의 DOM 요소
+ */
 function getTodoItemElem(item) {
   // 태그들 생성
   const liElem = document.createElement("li"); // <li> 요소 생성
@@ -14,9 +18,12 @@ function getTodoItemElem(item) {
   // 태그에 텍스트 추가
   noElem.appendChild(noTxt); // <span> 요소에 번호 텍스트 추가 => <span>3</span>
   titleElem.appendChild(titleTxt);
-  deleteElem.setAttribute("type", "button"); // <button> 요소에 type 속성 추가 => <button type="button">
-  titleElem.setAttribute("tabindex", 0); // <span> 요소에 tabindex 속성 추가 => <span tabindex="0">샘플3</span>
-  deleteElem.appendChild(deleteTxt); // <button> 요소에 삭제 버튼 텍스트 추가 => <button type="button">삭제</button>
+  // <button> 요소에 type 속성 추가 => <button type="button">
+  deleteElem.setAttribute("type", "button");
+  // <span> 요소에 tabindex 속성 추가 => <span tabindex="0">샘플3</span>
+  titleElem.setAttribute("tabindex", 0);
+  // <button> 요소에 삭제 버튼 텍스트 추가 => <button type="button">삭제</button>
+  deleteElem.appendChild(deleteTxt);
 
   // li의 자식으로 추가
   liElem.appendChild(noElem); // <li> 요소에 번호 추가 => <li><span>3</span></li>
@@ -24,31 +31,40 @@ function getTodoItemElem(item) {
   liElem.appendChild(deleteElem); // <li> 요소에 삭제 버튼 추가 => <li><span>3</span><span>샘플3</span><button type="button">삭제</button></li>
 
   //liElem에 cusom  속성추가 data-no, data-boolean
-  // <li data-no="n">
-  liElem.dataset.no = item.no; // <li data-no="3"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
-  liElem.dataset.boolean = item.done; // <li data-no="3" data-boolean="false"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
+  // <li data-no="3"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
+  liElem.dataset.no = item.no;
+  // liElem.setAttribute("data-no", item.no);
+  // <li data-no="3" data-boolean="false"><span>3</span><span tabindex="0">샘플3</span><button type="button">삭제</button></li>
+  liElem.dataset.done = item.done;
+  // liElem.setAttribute("data-boolean", item.done);
 
   //이벤트방법(1) : DOM Level2 방식
   deleteElem.addEventListener("click", function (event) {
     // 1. 삭제의 첫번째 방법
-    // const btn = event.target; // 클릭 이밴트가 발생한 요소 (button)
-    // const liNode = btn.closest("li"); // 클릭한 버튼의 조상 요소 중에서 가장 가까운 li 요소를 찾음
-    // deleteItem(liNode.dataset.no); // li 요소의 data-no 속성값을 가져옴
-    // 2. 삭제의 두번째 방법
-    // 클로저 단원에서 이상한 부분 확인
-    // deleteItem(item.no); // item.no를 이용하여 삭제
+    const btn = event.target; // 클릭 이밴트가 발생한 요소 (button)
+    const liNode = btn.closest("li"); // 클릭한 버튼의 조상 요소 중에서 가장 가까운 li 요소를 찾음
+    deleteItem(liNode.dataset.no); // li 요소의 data-no 속성값을 가져옴
   });
   // 3. 삭제의 세번째 방법  : DOM Level0 방식
-  deleteElem.setAttribute("onclick", `deleteItem(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
+  // deleteElem.setAttribute("onclick", `deleteItem(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
 
   // 완료/ 미완료 처리
-  titleElem.setAttribute("onclick", `toggleDone(${(item.no, item.done)})`); // 삭제 버튼 클릭 시 deleteItem() 호출
+  titleElem.addEventListener("click", function (event) {
+    // 1. 삭제의 첫번째 방법
+    const btn = event.target; // 클릭 이밴트가 발생한 요소 (button)
+    const liNode = btn.closest("li"); // 클릭한 버튼의 조상 요소 중에서 가장 가까운 li 요소를 찾음
+    toggleDone(liNode.dataset.no); // li 요소의 data-no 속성값을 가져옴
+    // toggleDone(liNode.dataset.done); // li 요소의 data-no 속성값을 가져옴
+  });
+  // titleElem.setAttribute("onclick", `toggleDone(${item.no})`); // 삭제 버튼 클릭 시 deleteItem() 호출
 
   // 리턴함
   return liElem;
 }
-
-// "추가" 버튼 클릭 이벤트 핸들러
+/**
+ * 추가 버튼 클릭 시 실행되는 이벤트 핸들러
+ * 입력창의 값을 가져와 새로운 Todo 아이템을 추가
+ */
 function handleAdd() {
   const inputElem = document.querySelector(".todoinput > input");
   if (inputElem.value.trim() !== "") {
@@ -57,16 +73,21 @@ function handleAdd() {
     inputElem.focus();
   }
 }
-
-// 엔터 키를 눌렀을때 처리할 이벤트 핸들러
+/**
+ * 입력창에서 키보드 입력 시 실행되는 이벤트 핸들러
+ * Enter 키 입력 시 추가 기능 실행
+ * @param {KeyboardEvent} event - 키보드 이벤트 객체
+ */
 function handleKeyup(event) {
   // 키보드 이벤트 정보를 가지고 있는 Event 객체
   if (event.key === "Enter") {
     handleAdd();
   }
 }
-
-// 할일 추가
+/**
+ * 새로운 Todo 아이템을 목록에 추가하는 함수
+ * @param {string} title - 추가할 Todo 아이템의 제목
+ */
 function addItem(title) {
   const todoList = document.querySelector(".todolist");
 
@@ -84,40 +105,32 @@ function addItem(title) {
 }
 
 /**
- * 특정 할 일의 완료 상태를 토글합니다. (완료 ↔ 미완료)
- * @param {number} no - 토글할 할 일의 고유 번호
+ * Todo 아이템의 완료/미완료 상태를 토글하는 함수
+ * @param {number} no - 토글할 Todo 아이템의 번호
  */
-function toggleDone(no, done, title) {
-  console.log(no, done);
-  const targetNo = document.querySelector(`.todolist > li[data-no="${no}"]`);
-  const targetDone = document.querySelector(`.todolist > li[data-boolean="${done}"]`);
-  console.log(targetNo, targetDone);
-
-  if (targetDone === true) {
-    // 완성 상태일때
-    // item.title이 이 안에 없기때문에 안불러와짐
-    // 긋기 취소
-    const titleElem = document.createElement("span"); // <span> 요소 생성 => 할일 목록
-    const titleTxt = document.createTextNode(title); // 할일의 제목 생성
-    titleElem.appendChild(titleTxt); // <span> 요소에 완료된 할일 목록 추가 => <span><s></s></span>
-    // false로 변경
-    done = false;
+function toggleDone(no) {
+  const targetLi = document.querySelector(`.todolist > li[data-no="${no}"]`);
+  const done = targetLi.dataset.done === "true"; // true, false로 변환함
+  console.log("done의 타입은", typeof done, done);
+  const titleElem = targetLi.querySelector("span:last-of-type");
+  console.log(titleElem);
+  if (done) {
+    // done이 treu일때 => 완료를 미완료로 변환
+    // <span></span>
   } else {
-    // 미완성 상태일때
-    // 긋고
-    const titleElem = document.createElement("span"); // <span> 요소 생성 => 할일 목록
-    const titleTxt = document.createTextNode(title); // 할일의 제목 생성
-    const centerLienElem = document.createElement("s"); // <s> 요소 생성 => 완료된 할일 목록
-    centerLienElem.appendChild(titleTxt); // <s> 요소에 제목 텍스트 추가 => <s>샘플3</s>
-    titleElem.appendChild(centerLienElem); // <span> 요소에 완료된 할일 목록 추가 => <span><s></s></span>
-    // true로 변경
-    done = true;
+    // done이 false일때 => 미완료를 완료로 변환
+    // <span><s></s></span>
+    const sElem = document.createElement("s"); // <s> 요소 생성 => 완료된 할일 목록
+    sElem.appendChild(titleElem.firstChild); // => <s>title</s> <span></span>
+    titleElem.appendChild(sElem); // => <span><s>title</s></span>
   }
+
+  console.log("no의 번호는?", no);
 }
 
 /**
- * 특정 할 일을 삭제합니다.
- * @param {number} no - 삭제할 할 일의 고유 번호
+ * Todo 아이템을 삭제하는 함수
+ * @param {number} no - 삭제할 Todo 아이템의 번호
  */
 function deleteItem(no) {
   const targetLi = document.querySelector(`.todolist > li[data-no="${no}"]`);
