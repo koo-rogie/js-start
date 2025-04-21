@@ -6,4 +6,10 @@
 */
 
 // 선언문 방식의 함수 정의
+console.log("실행 순서 2", add(10, 20));
 
+function add(x, y) {
+  return x + y;
+}
+
+console.log("실행 순서 3", add(10, 20));
