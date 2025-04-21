@@ -8,9 +8,20 @@
 */
 
 // 함수는 동적으로 생성된 프로퍼티를 가질 수 있다.
-function add(x, y){
-  var result = x + y;
-  return result;
+function add(x, y) {
+  add.result = x + y;
+  return add.result;
 }
 
-console.log(add(10, 20));
+console.log(add(10, 20), add(10, 20));
+
+const result = add(70, 10);
+console.log(result, result);
+
+add(50, 60);
+console.log(add.result, add.result);
+
+console.log(add);
+console.dir(add);
+
+//globalThis: 브라우저에서는 window, Node.js에서는 global을 가리킴

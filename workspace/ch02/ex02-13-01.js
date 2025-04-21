@@ -9,20 +9,30 @@
   - 배열과 비슷하게 length 속성과 index로 각 인자에 접근 가능
 */
 
-function fn(n1, n2){
-  // console.log(n1, n2);
-  // 모든 인자값의 합계를 출력
-  var sum = 0;
-  for(var i=0; i<arguments.length; i++){
-    sum += arguments[i];
-  }
-  console.log('합계', sum);
+function fn(n1, n2) {
+  // n1과 n2 출력
+  console.log(n1, n2);
 }
 
-fn();
-fn(10);
-fn(20, 30);
-fn(40, 50, 60);
-fn(1342,53,64,57,58,67,967,6734,5,234,23,6,467,567,97,8,566,34);
+fn(); // undefined undefined
+fn(10); // 10 undefined
+fn(20, 30); // 20 30
+fn(40, 50, 60); // 40 50
+fn(1342, 53, 64, 57, 58, 67, 967, 6734, 5, 234, 23, 6, 467, 567, 97, 8, 566, 34); // 1342 53
 
+function sum1(n1, n2) {
+  // n1과 n2 출력
+  // console.log(n1, n2);
+  // 모든 인자값의 합계를 출력
+  let sum = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  console.log("합계", sum);
+}
 
+sum1(); // 합계 0
+sum1(10); // 합계 10
+sum1(20, 30); // 합계 50
+sum1(40, 50, 60); // 합계 150
+sum1(100, 120, 130, 90, 85, 111, 50, 70, 160, 200); // 총합: 1016

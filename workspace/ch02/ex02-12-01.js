@@ -6,12 +6,12 @@
 */
 
 console.log(a);
-console.log(b);
-console.log(c);
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+console.log(c); // ReferenceError: Cannot access 'c' before initialization
 
-var a = 10;
-let b = 20;
-const c = 30;
+var a = 10; // 호이스팅 단계에서 undefinde로 초기화가 돼있음 => 그래서 에러 안남
+let b = 20; // 호이스팅 단계에서 선언만 되고 초기화가 안됨 => 그래서 에러남
+const c = 30; // 호이스팅 단계에서 선언만 되고 초기화가 안됨 => 그래서 에러남
 
 console.log(a);
 console.log(b);
