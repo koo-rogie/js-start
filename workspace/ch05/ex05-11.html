@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM</title>
+    <title>DOM - 이벤트 위임</title>
     <link rel="shortcut icon" href="../img/favicon.ico" />
 
     <style>
@@ -16,8 +16,32 @@
         padding: 10px;
         border: 1px solid gray;
       }
+      .pink {
+        background-color: pink;
+      }
+      .red {
+        background-color: red;
+      }
     </style>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const table = document.querySelector("table");
+        table.addEventListener("click", (e) => {
+          if (e.target.tagName === "TD") {
+            e.target.classList.toggle("pink");
+            // e.target.style.backgroundColor = "red";
+          }
+        });
+        table.addEventListener("dblclick", function (event) {
+          console.log(event.target);
+          console.log(event.currentTarget);
+
+          if (event.target.tagName === "TD") {
+            event.target.classList.toggle("red");
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <h1>DOM - 이벤트 위임</h1>

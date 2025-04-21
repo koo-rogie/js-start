@@ -12,12 +12,35 @@
         background-color: #f0f0f0;
       }
     </style>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const div = document.querySelector("div");
+        div.addEventListener("click", (e) => {
+          console.log("div 클릭");
+          console.log("이밴트가 발생한 요소(target)", e.target); // 이벤트가 발생한 요소
+          console.log("이밴트를 처리한 요소(currentTarget)", e.currentTarget); // 이벤트를 처리한 요소
+        });
+
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", function (e) {
+          console.log("button 클릭");
+          console.log("이밴트가 발생한 요소(target)", e.target); // 이벤트가 발생한 요소
+          console.log("이밴트를 처리한 요소(currentTarget)", e.currentTarget); // 이벤트를 처리한 요소
+        });
+
+        const span = document.querySelector("span");
+        span.addEventListener("click", function (e) {
+          console.log("span 클릭");
+          console.log("이밴트가 발생한 요소(target)", e.target); // 이벤트가 발생한 요소
+          console.log("이밴트를 처리한 요소(currentTarget)", e.currentTarget); // 이벤트를 처리한 요소
+        });
+      });
+    </script>
   </head>
   <body>
     <h1>DOM - Event 객체</h1>
     <div>
-      <button>눌러봐</button>
+      <button>버튼<span>이러면 안되지만..</span>버튼</button>
     </div>
   </body>
 </html>

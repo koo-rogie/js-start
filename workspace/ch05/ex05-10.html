@@ -14,7 +14,36 @@
         border: 1px solid blue;
       }
     </style>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const div = document.querySelector("div");
+        const p = document.querySelector("p");
+
+        form.addEventListener("click", function()  {
+          console.log("form 클릭");
+        },true);  
+        //  useCapture: 생략하면 false(버블링), true로 지정하면 캡처링 단계에서 사용
+        div.addEventListener("click",function () {
+          console.log("   div 클릭");
+          // e.stopImmediatePropagation(); // 이벤트 전파 중지
+        }, true);
+        p.addEventListener("click", () => {
+          console.log("    p 클릭");
+          // e.stopImmediatePropagation(); // 이벤트 전파 중지
+        }, true);
+        /*
+        // 버블링 함수 방법
+        function bubble(event) {
+          console.log(event.currentTarget, "클릭");
+          event.stopPropagation();
+        }
+        form.addEventListener("click", bubble);
+        div.addEventListener("click", bubble);
+        p.addEventListener("click", bubble);
+        */
+      });
+    </script>
   </head>
   <body>
     <h1>DOM - 버블링과 캡처링</h1>
@@ -23,7 +52,9 @@
       <div>
         DIV
         <p>P</p>
+        DIV
       </div>
+      FORM
     </form>
   </body>
 </html>

@@ -6,7 +6,34 @@
     <title>DOM</title>
     <link rel="shortcut icon" href="../img/favicon.ico" />
 
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const a = document.querySelector("a");
+        const img = document.querySelector("img");
+        const input = document.querySelector("input");
+
+        // 표준 속성 접근
+        console.log("a링크: ", a.href);
+        console.log("이미지 src: ", img.src);
+        console.log("이미지 width: ", img.width);
+        console.log("이미지 height: ", img.height);
+        console.log("input name: ", input.name);
+        console.log("input type: ", input.type);
+        console.log("input value: ", input.value);
+        console.log("------------------");
+
+        // 비표준 속성 접근
+        console.log("이미지 format(비표준 접근): ", img.format);
+        console.log("이미지 format(비표준 이지만 접근 할 수 있음): ", img.getAttribute("format"));
+        console.log("------------------");
+
+        // 커스텀 속성 접근
+        console.log("이미지 dataset: ", img.dataset);
+        console.log("이미지 age: ", img.dataset.age);
+        console.log("이미지 userName: ", img.dataset.userName);
+        console.log("이미지 format(data): ", img.dataset.format);
+      });
+    </script>
   </head>
   <body>
     <h1>DOM - HTML 속성 접근</h1>
@@ -15,9 +42,10 @@
       src="https://samg.net/2020/wp-content/uploads/2024/06/사랑의-하츄핑_메인-포스터_KB-640x914.jpg"
       width="160"
       format="png"
+      data-format="png"
       data-age="6"
       data-user-name="커스텀핑"
     />
-    <input type="text" name="userName" />
+    <input type="text" name="userName" value="인풋핑" />
   </body>
 </html>

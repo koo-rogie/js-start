@@ -13,24 +13,29 @@
     </div>
     <script>
       const btn = document.querySelector("button");
-      // 이벤트 등록
-      // 1. elem.on<이벤트> 속성에 이밴트 핸들러 추가
-      // DOM Level 0 방식(비표준 방식)
-      btn.onclick = () => {
-        console.log("눌렀어");
+      // 이벤트 등록 방법 1: elem.on<event> 속성에 이벤트 핸들러 추가
+      //dom level 0 방식(비표준)
+      btn.onclick = function () {
+        console.log("눌렀음 - 1");
       };
-      btn.onclick = () => {
-        console.log("눌렀어요?");
+      btn.onclick = function () {
+        console.log("눌렀네 - 2");
       };
-      // 3. addEventListener() 메서드로 이벤트 등록
-      // add라서 이벤트가 추가됨
-      // DOM Level 2 방식(표준 방식)
-      btn.addEventListener("click", () => {
-        console.log("눌렀습니다.");
+
+      // 이벤트 등록방법 3: addEventListner()
+      // dom level 2 방식(표준)
+      btn.addEventListener("click", function () {
+        console.log("누름 - 3");
       });
-      btn.addEventListener("click", () => {
-        console.log("눌렀슴다.");
-      });
+      btn.addEventListener("click", handleclick);
+
+      setTimeout(function () {
+        btn.removeEventListener("click", handleclick);
+      }, 1000 * 10);
+
+      function handleclick() {
+        console.log("눌렀소 - 4");
+      }
     </script>
   </body>
 </html>

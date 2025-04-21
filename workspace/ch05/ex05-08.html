@@ -9,7 +9,7 @@
     <style>
       /* CSS 클래스 정의 */
       .pad100 {
-        padding: 100px;
+        padding: 50px;
       }
       .size30 {
         font-size: 30px;
@@ -17,13 +17,68 @@
       .line-through {
         text-decoration: line-through; /* 취소선 스타일 */
       }
+      ul {
+        margin: 10px;
+        border: 1px solid pink;
+        list-style: none;
+      }
+      li {
+        border: 1px solid yellow;
+      }
     </style>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const list = document.querySelector("ul");
+        console.log("전이얌", list.className);
+        console.log(list.classlist);
+        list.className = "goodbye";
+        console.log("후얌", list.className);
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", () => {
+          // 태그안에 style 속성이 있으면 가지고오고 아니라면 없음(css 파일이나 <style>태그의 스타일은 접근 안됨)
+          console.log(list.style.fontSize);
+
+          //
+          const computedStyle = getComputedStyle(list);
+          console.log(computedStyle.fontSize);
+
+          list.classList = "pad100 size30";
+          console.log(computedStyle.fontSize);
+        });
+        // for (let item of list.children) {
+        //   item.addEventListener("click", (e) => {
+        //     console.log("e.target", e.target);
+
+        //     // if문 사용함
+        //     // if (e.target.classList.contains("line-through")) {
+        //     //   // 지정한 class를 가지고 있는지 여부 반환
+        //     //   e.target.classList.remove("line-through");
+        //     // } else {
+        //     //   e.target.classList.add("line-through");
+        //     // }
+
+        //     // toggle 이벤트 사용
+        //     e.target.classList.toggle("line-through");
+        //   });
+        // }
+
+        //이밴트 위임
+        list.addEventListener("click", function (e) {
+          console.log("e.target", e.target);
+          console.log("e.currentTarget", e.currentTarget);
+          if (e.target.nodeName === "LI") {
+            // nodeName은 모든 문장이 대문자임
+            e.target.classList.toggle("line-through");
+          }
+        });
+      });
+    </script>
   </head>
-  <body>
+  <body style="user-select: none">
     <h1>DOM - class 속성 접근</h1>
     <button>class 추가</button>
-    <ul>
+    <ul class="hello bye">
+      여기 ul
       <li>두부</li>
       <li>계란</li>
       <li>콩나물</li>

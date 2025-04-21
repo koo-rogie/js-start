@@ -6,7 +6,29 @@
     <title>DOM</title>
     <link rel="shortcut icon" href="../img/favicon.ico" />
 
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const smile = document.querySelector("span");
+        console.log(smile.style);
+        console.log(smile.style.top, smile.style.left, smile.style.fontSize);
+        setTimeout(() => {
+          smile.style.left = "14.25rem";
+          smile.style.top = "2.60rem";
+        }, 1500);
+        document.addEventListener("mousemove", (e) => {
+          // 마우스를 움직이면
+          const x = e.clientX - smile.clientWidth / 2 + 20;
+          const y = e.clientY - smile.clientHeight / 2 + 20;
+          // smile.style.left = `${x}px`; // 마우스 좌표에 따라 위치 변경
+          // smile.style.top = `${y}px`;
+          // smile.style.fontSize = (x + y) / 5 + "px"; // 마우스 좌표에 따라 크기 변경
+          // smile.style = `left: ${x}px; top: ${y}px; font-size:${x / 5}px; `; // 이거 안됨
+
+          smile.style.cssText = `position:fixed; left: ${x}px; top: ${y}px; font-size:${x / 5}px; `; // 이거 됨
+          smile.style.backgroundColor = "#" + Math.floor((event.clientX / window.innerWidth) * 16777215).toString(16);
+        });
+      });
+    </script>
   </head>
   <body>
     <h1>DOM - style 속성 접근</h1>
