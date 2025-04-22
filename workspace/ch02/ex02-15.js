@@ -32,4 +32,4 @@ console.log(rara.age, rara.getName()); // getName의 this는 rara
 console.log("=========================================");
 console.log(getPingName(), getPingName.call(baro), getPingName.call(rara)); // this는 각각 window, baro, rara
 console.log(baro.getName(), baro.getName.apply(rara)); // this는 각각 baro, rara
-console.log(rara.getName(), rara.getName.apply(baro)); // this는 각각 rara, baro
+console.log(rara.getName(), rara.getName.apply(globalThis)); // this는 각각 rara, baro
