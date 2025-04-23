@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>익명 함수 사용 예제</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("1. load 이벤트 발생.");
+
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", () => {
+          console.log("3. click 이벤트 발생.");
+          const msg = "5. 버튼 누른 후 3초 경과함";
+          setTimeout(() => {
+            console.log(msg);
+          }, 3000);
+          console.log("4. click 이벤트 처리 완료.");
+        });
+        console.log("2. load 이벤트 처리 완료");
+      });
+    </script>
+  </head>
+  <body>
+    <h2>익명 함수 사용 예제</h2>
+    <h2>콜백 함수 사용 예제</h2>
+    <button type="button">눌러봐</button>
+  </body>
+</html>
