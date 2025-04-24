@@ -14,8 +14,8 @@ js-start
 ├─ workspace
 │  ├─ ch01                => # JS 기초
 │  ├─ ch02                => # 함수
-│  ├─ ch03                => # 예제파일
-│  ├─ ch04                => # 예제파일
+│  ├─ ch03                => # prototype
+│  ├─ ch04                => # 캐시 및 클로저, 클래스
 │  ├─ ch05                => # DOM 객체
 │  ├─ css
 │  ├─ img
