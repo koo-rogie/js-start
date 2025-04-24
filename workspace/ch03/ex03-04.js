@@ -26,7 +26,6 @@ const s1 = new HighSchool(100, 91);
 console.log("고등학교 총점", s1.sum());
 console.log("고등학교 평균", s1.avg());
 
-
 /**
  * 대학교 성적관리 생성자 함수(총점, 평균과 학점 계산)
  * @param {number} kor 국어 점수
@@ -37,13 +36,10 @@ function College(kor, eng) {
   this.eng = eng;
 }
 
-College.prototype.sum = function () {
-  return this.kor + this.eng;
-};
+// College가 HighSchool을 상속 받는다
+College.prototype = new HighSchool();
+College.prototype.constructor = College;
 
-College.prototype.avg = function () {
-  return this.sum() / 2;
-};
 College.prototype.grade = function () {
   const avg = this.avg();
   if (avg >= 90) {
@@ -63,4 +59,3 @@ const c1 = new College(80, 91);
 console.log("대학교 총점", c1.sum());
 console.log("대학교 평균", c1.avg());
 console.log("대학교 학점", c1.grade());
-
