@@ -59,3 +59,5 @@ const c1 = new College(80, 91);
 console.log("대학교 총점", c1.sum());
 console.log("대학교 평균", c1.avg());
 console.log("대학교 학점", c1.grade());
+
+console.log(College.prototype);
