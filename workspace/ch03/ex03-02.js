@@ -14,8 +14,8 @@ const User = function (name) {
   this.getName = () => {
     return this.name;
   };
-  this.setName = (name) => {
-    this.name = name;
+  this.setName = (newName) => {
+    this.name = newName;
   };
 };
 
