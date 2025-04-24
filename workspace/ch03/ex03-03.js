@@ -9,17 +9,24 @@
  * 사용자 객체를 생성하는 생성자 함수
  * @param {string} name 사용자 이름
  */
-const User = function(name){
-  
+const User = function (name) {
+  this.name = name;
+};
+User.prototype.getName =function ()  {
+  return this.name;
 };
 
-const haru = new User('하루핑');
-const namu = new User('나무핑');
+User.prototype.setName = function (newName) {
+  this.name = newName;
+};
 
-console.log(haru.getName());	// 하루핑
-console.log(namu.getName());	// 나무핑
-haru.setName('이틀핑');
-console.log(haru.getName());	// 이틀핑
+const haru = new User("하루핑");
+const namu = new User("나무핑");
 
-console.log(haru.getName == namu.getName);	// true
-console.log(haru.setName == namu.setName);	// true
+console.log(haru.getName()); // 하루핑
+console.log(namu.getName()); // 나무핑
+haru.setName("이틀핑");
+console.log(haru.getName()); // 이틀핑
+
+console.log(haru.getName == namu.getName); // true
+console.log(haru.setName == namu.setName); // true
