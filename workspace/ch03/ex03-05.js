@@ -46,19 +46,19 @@ function College(kor, eng) {
 
 // 상속 함수 정의
 // 부모 생성자 함수(Parent)의 prototype을 자식 생성자 함수(Child)에 연결
-function inherite(Parent, Child) {
-  // const F = new Function(); // 중간 연결자 역할을 하는 빈 함수 생성
-  // F.prototype = Parent.prototype; // 빈 함수의 프로토타입을 부모의 프로토타입으로 설정
-  // Child.prototype = new F(); // 빈 함수의 인스턴스를 자식의 프로토타입으로 설정 (간접 상속)
+// function inherite(Parent, Child) {
+// const F = new Function(); // 중간 연결자 역할을 하는 빈 함수 생성
+// F.prototype = Parent.prototype; // 빈 함수의 프로토타입을 부모의 프로토타입으로 설정
+// Child.prototype = new F(); // 빈 함수의 인스턴스를 자식의 프로토타입으로 설정 (간접 상속)
 
-  Child.prototype = Object.create(Parent.prototype);
-  //create함수는 지정한 prototype 객체를 참조하는 인스턴스 생성
-  
-  Child.prototype.constructor = Child; // 자식 생성자의 constructor 프로퍼티 복원
-}
+// Child.prototype = Object.create(Parent.prototype);
+//create함수는 지정한 prototype 객체를 참조하는 인스턴스 생성
 
-// College가 HighSchool을 상속받도록 설정
-inherite(HighSchool, College);
+// Child.prototype.constructor = Child; // 자식 생성자의 constructor 프로퍼티 복원
+// }
+
+// College가 HighSchool을 상속받도록 설정 => 내가 만든 라이브러리에서 불러옴 mylib 파일 참조
+mylib.inherite(HighSchool, College);
 
 /**
  * 학점 계산 메서드
