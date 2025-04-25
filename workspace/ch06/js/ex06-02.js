@@ -15,4 +15,8 @@
     // any 타입 상관없이 대입이 됨
     let userName = "이일구";
     userName = 213;
+    let userName2 = "Tsping";
+    userName2 = 3432;
+    console.log(userName.toUpperCase());
+    // console.log(userName2.toUpperCase());
 })();
