@@ -17,6 +17,7 @@ js-start
 │  ├─ ch03                => # prototype
 │  ├─ ch04                => # 캐시 및 클로저, 클래스
 │  ├─ ch05                => # DOM 객체
+│  ├─ ch06                => # TypeScript
 │  ├─ css
 │  ├─ img
 │  ├─ js
@@ -24,6 +25,6 @@ js-start
 ├─ .gitignore
 ├─ README-save.md         => # 선생님 리드밋 파일 분리
 ├─ README.md              => # 내 폴더의 리드밋
-├─ package-lock.json      
+├─ package-lock.json
 └─ package.json           => # 라이브 서버 구동을 위한 서버 설치
 ```
