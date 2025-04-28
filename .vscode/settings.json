@@ -2,7 +2,8 @@
   "files.readonlyInclude": {
     "PPT/**": true,
     "sample/**": true,
-    "workspace-ins/**": true
+    "workspace-ins/**": true,
+    "workspace/ch06/js/**": true
   },
   "files.exclude": {
     "**/.git": true,
