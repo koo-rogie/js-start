@@ -4,7 +4,7 @@
   let str: string = "100";
   let eag: number = 12;
   let doun: boolean = true;
-  doun = false;
+  // doun = false;
 
   let nullVal: null = null;
   let emtyVal: undefined = undefined;

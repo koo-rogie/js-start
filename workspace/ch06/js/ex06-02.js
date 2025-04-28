@@ -4,7 +4,7 @@
     let str = "100";
     let eag = 12;
     let doun = true;
-    doun = false;
+    // doun = false;
     let nullVal = null;
     let emtyVal = undefined;
     let todo = { title: "TypeScript 공부", doun: false };
