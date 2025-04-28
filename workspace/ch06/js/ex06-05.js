@@ -7,4 +7,11 @@
     function logNumber(msg) {
         console.log(msg);
     }
+    logString("hello");
+    logNumber(235);
+    function log(msg) {
+        console.log(msg);
+    }
+    log(123);
+    log("123");
 })();
