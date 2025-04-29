@@ -69,3 +69,29 @@
 55.55555555555556
 */
 
+/**
+ * 표준 입력장치(콘솔)에서 여러줄로 입력된 줄당 여러 건의 데이터를 읽어서 숫자로 변환한 후
+ * 배열로 저장하여 반환한다.
+ * @returns {[]} 2차원 배열
+ */
+function getData() {
+  const fs = require("fs");
+  return fs
+    .readFileSync(0)
+    .toString()
+    .trim()
+    .split("\n")
+    .map((row) => row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val))));
+}
+
+function main() {
+  const data = getData();
+  let n = data[0][0];
+  let number = data[1];
+  let maxNum = parseInt(Math.max(...number));
+  let sum = 0;
+  for (let elem of number) {sum += (elem / maxNum) * 100;}
+  let sumPlus = sum / n;
+  console.log(sumPlus);
+}
+main();
