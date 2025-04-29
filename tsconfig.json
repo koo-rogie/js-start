@@ -111,5 +111,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["workspace/**/*"],
-  "exclude": ["node_modules", "PPT", "boj", ".vscode"]
+  "exclude": ["node_modules", "PPT", "boj", ".vscode", "**/tempCodeRunnerFile.ts"]
 }
