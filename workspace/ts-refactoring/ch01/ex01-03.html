@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      console.log("hello, javascript"); // 매서드 (개게에 정의한 함수)
+
+      // html 문서가 로딩이 완료된 이후에 진행됨
+      window.addEventListener("load", function () {
+        const btn = document.querySelector("button");
+        // 버튼에 클릭 이벤트 추가
+
+        // function scope, 함수 내부에 선언된 지역변수
+        btn.addEventListener("click", function () {
+          console.log("버튼 클릭! - 2");
+          const imgE = document.querySelector("img");
+          imgE.src =
+            "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F4vaba%2FbtscKmQxvUn%2FZMtFGMF7Knbvac7MDCGKDk%2Fimg.png";
+          imgE.alt = "지친 표정으로 어서 와라고 말하는 남자를 그림";
+        });
+      });
+    </script>
+    <script src="./ex01-03.js"></script>
+  </head>
+  <body>
+    <h1>어서와, 자바스크립트는 좀 익숙해졌지?</h1>
+    <button>클릭</button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <img
+      src="https://i.namu.wiki/i/1G1Nc_PEsk2rbiAM4G0OfhNr772QM8oWtmBX-ol2Rsy7_ySc6b0mUUxzOn7Zp3pTi-9VgzTTc5AYz8Vg4lj90Q.webp"
+      alt="지친 표정으로 어서 와라고 말하는 남자"
+      width="240"
+      height="234"
+    />
+    <script>
+      console.log("hello, javascript");
+      // 버튼에 클릭 이벤트 추가
+      const btn = document.querySelector("button"); // global scope, 전역변수
+      btn.addEventListener("click", function () {
+        console.log("버튼 클릭! - 1");
+      });
+    </script>
+  </body>
+</html>
