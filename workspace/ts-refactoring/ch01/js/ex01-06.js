@@ -1,8 +1,8 @@
 "use strict";
+/*
+기본 데이터 타입 - Number, String, Boolean, undefined, null
+*/
 (() => {
-    /*
-    기본 데이터 타입 - Number, String, Boolean, undefined, null
-    */
     // number
     var num = 100;
     var flotNum = 3.14;
@@ -12,7 +12,7 @@
     // boolean
     var b1 = true;
     var b2 = false;
-    // undefined
+    // any
     var emptyal;
     var nullyal = null;
     // null

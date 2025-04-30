@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    if 문
-    */
+  if 문
+  */
     const age = 22;
     if (age >= 20) {
         // age가 20 이상이면 "성인" 출력

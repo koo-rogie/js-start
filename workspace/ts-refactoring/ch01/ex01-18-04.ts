@@ -1,5 +1,5 @@
 (() => {
-/*
+  /*
 if-else if문 사용
 
 1. 정보처리 기사 필기 시험의 과목은 소프트웨어 설계, 소프트웨어 개발, 데이터베이스 구축, 프로그래밍 언어 활용, 정보 시스템 구축 관리 입니다.
@@ -41,87 +41,67 @@ if-else if문 사용
 아쉽지만 불합격입니다. 사유: 과락 40점 미달(30점)
 */
 
-const softwareDesign = 48; // 1. 소프트웨어 설계
-const softwareDevelopment = 80; // 2. 소프트웨어 개발
-const databaseSetup = 50; // 3. 데이터베이스 구축
-const programmingUsage = 70; // 4. 프로그래밍 언어 활용
-const systemManagement = 55; // 5. 정보 시스템 구축 관리
+  const softwareDesign: number = 48; // 1. 소프트웨어 설계
+  const softwareDevelopment: number = 80; // 2. 소프트웨어 개발
+  const databaseSetup: number = 50; // 3. 데이터베이스 구축
+  const programmingUsage: number = 70; // 4. 프로그래밍 언어 활용
+  const systemManagement: number = 55; // 5. 정보 시스템 구축 관리
 
-// 총점과 평균 구하기
-const allCorrect =
-  softwareDesign +
-  softwareDevelopment +
-  databaseSetup +
-  programmingUsage +
-  systemManagement;
-const allAaverage = allCorrect / 5;
+  // 총점과 평균 구하기
+  const allCorrect = softwareDesign + softwareDevelopment + databaseSetup + programmingUsage + systemManagement;
+  const allAaverage = allCorrect / 5;
 
-console.log(`총점: ${allCorrect}`);
-console.log(`평균: ${allAaverage}`);
+  console.log(`총점: ${allCorrect}`);
+  console.log(`평균: ${allAaverage}`);
 
-// 2. 최고, 최저점 출력하기
-const maxCount = Math.max(
-  softwareDesign,
-  softwareDevelopment,
-  databaseSetup,
-  programmingUsage,
-  systemManagement
-);
-const minConut = Math.min(
-  softwareDesign,
-  softwareDevelopment,
-  databaseSetup,
-  programmingUsage,
-  systemManagement
-);
-console.log("최고점: " + maxCount);
-console.log("최저점: " + minConut);
+  // 2. 최고, 최저점 출력하기
+  const maxCount = Math.max(softwareDesign, softwareDevelopment, databaseSetup, programmingUsage, systemManagement);
+  const minConut = Math.min(softwareDesign, softwareDevelopment, databaseSetup, programmingUsage, systemManagement);
+  console.log("최고점: " + maxCount);
+  console.log("최저점: " + minConut);
 
-// 3. 합격/ 불합격 추가
+  // 3. 합격/ 불합격 추가
 
-// 내가 한거
-// if (allAaverage >= 60) {
-//   console.log("축하합니다. 합격입니다");
-// } else {
-//   console.log(`아쉽지만 불합격입니다. 사유: 평균 60점 미달 (${allAaverage}점)`);
-// }
+  // 내가 한거
+  // if (allAaverage >= 60) {
+  //   console.log("축하합니다. 합격입니다");
+  // } else {
+  //   console.log(`아쉽지만 불합격입니다. 사유: 평균 60점 미달 (${allAaverage}점)`);
+  // }
 
-// if (minConut >= 40) {
-//   console.log("축하합니다. 합격입니다");
-// } else {
-//   console.log(`아쉽지만 불합격입니다. 사유: 과락 40점 미달 (${minConut}점)`);
-// }
+  // if (minConut >= 40) {
+  //   console.log("축하합니다. 합격입니다");
+  // } else {
+  //   console.log(`아쉽지만 불합격입니다. 사유: 과락 40점 미달 (${minConut}점)`);
+  // }
 
-// 첫번째 안
-// if (
-//   allAaverage >= 60 &&
-//   softwareDesign >= 40 &&
-//   softwareDesign >= 40 &&
-//   softwareDevelopment >= 40 &&
-//   databaseSetup >= 40 &&
-//   programmingUsage >= 40 &&
-//   systemManagement >= 40
-// ) {
-//   console.log("축하합니다. 합격입니다");
-// }
+  // 첫번째 안
+  // if (
+  //   allAaverage >= 60 &&
+  //   softwareDesign >= 40 &&
+  //   softwareDesign >= 40 &&
+  //   softwareDevelopment >= 40 &&
+  //   databaseSetup >= 40 &&
+  //   programmingUsage >= 40 &&
+  //   systemManagement >= 40
+  // ) {
+  //   console.log("축하합니다. 합격입니다");
+  // }
 
-if (allAaverage < 60 && minConut >= 40) {
-  console.log("축하합니다. 합격입니다");
-} else {
-  console.log(`아쉽지만 불합격입니다.`);
-}
-
-if (allAaverage >= 60 && minConut >= 40) {
-  console.log("축하합니다. 합격입니다");
-} else {
-  if (allAaverage < 60) {
-    console.log(
-      `아쉽지만 불합격입니다. 사유: 평균 60점 미달 (${allAaverage}점)`
-    );
+  if (allAaverage < 60 && minConut >= 40) {
+    console.log("축하합니다. 합격입니다");
+  } else {
+    console.log(`아쉽지만 불합격입니다.`);
   }
-  if (minConut < 40) {
-    console.log(`아쉽지만 불합격입니다. 사유: 과락 40점 미달 (${minConut}점)`);
-  }
-}
 
+  if (allAaverage >= 60 && minConut >= 40) {
+    console.log("축하합니다. 합격입니다");
+  } else {
+    if (allAaverage < 60) {
+      console.log(`아쉽지만 불합격입니다. 사유: 평균 60점 미달 (${allAaverage}점)`);
+    }
+    if (minConut < 40) {
+      console.log(`아쉽지만 불합격입니다. 사유: 과락 40점 미달 (${minConut}점)`);
+    }
+  }
 })();

@@ -1,9 +1,9 @@
 "use strict";
 (() => {
     /*
-    if-else문을 이용하여 사용자와 로그인 상태를 출력하세요.
-    
-    */
+  if-else문을 이용하여 사용자와 로그인 상태를 출력하세요.
+  
+  */
     const isLogin = true; // 로그인 상태
     const isUser = false; // 사용자
     const isSeller = true;

@@ -15,11 +15,11 @@ const
   var user = "하추핑";
   var user2 = "아자핑";
 
-  var message1 = "아자핑이 '안녕하세요' 라고 말했다";
-  var message2 = '아자핑이 "안녕하세요"라고 말했다';
-  var message3 = "아자핑이 '안녕하세요' 라고 말했다 ";
-  var message4 = "몰라핑이 \n모른다고 말\t했다";
-  var message5 = "하루핑이 \\모른다고\\ 말했다";
+  var message1: string = "아자핑이 '안녕하세요' 라고 말했다";
+  var message2: string = '아자핑이 "안녕하세요"라고 말했다';
+  var message3: string = "아자핑이 '안녕하세요' 라고 말했다 ";
+  var message4: string = "몰라핑이 \n모른다고 말\t했다";
+  var message5: string = "하루핑이 \\모른다고\\ 말했다";
   console.log(message1, message2, message3, message4, message5);
 
   var 변수1 = "좋아함";
@@ -34,10 +34,10 @@ const
   var $ = 4;
 
   //var user-name ="안돼핑"; //이건 안됨
-  var userName = "가능핑";
-  var userAge = 22;
-  var userGender = "여자";
-  var userEmail = "rn5184@naver.com";
+  var userName: string = "가능핑";
+  var userAge: number = 22;
+  var userGender: string = "여자";
+  var userEmail: string = "rn5184@naver.com";
 
   console.log(`나의 이메일은 ${userEmail} 입니다`);
 

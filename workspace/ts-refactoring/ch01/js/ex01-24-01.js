@@ -1,10 +1,10 @@
 "use strict";
 (() => {
     /*
-    JSON 표기법 - 리터럴 방식으로 객체 생성
-    JavScript Object Notation
-    JSON은 자바스크립트 객체 표기법으로, 자바스크립트에서 객체를 표현하는 방법이다.
-    */
+  JSON 표기법 - 리터럴 방식으로 객체 생성
+  JavScript Object Notation
+  JSON은 자바스크립트 객체 표기법으로, 자바스크립트에서 객체를 표현하는 방법이다.
+  */
     const foo = {
         name: "구성연",
         age: 22,

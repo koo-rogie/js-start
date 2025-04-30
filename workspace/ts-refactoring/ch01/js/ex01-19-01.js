@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    switch문
-    */
+  switch문
+  */
     const pingName = "하츄핑";
     let modifier = "";
     switch (pingName) {

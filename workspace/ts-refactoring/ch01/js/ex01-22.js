@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    반복문 - break, continue
-    */
+  반복문 - break, continue
+  */
     // n ~ m까지의 정수중에서 가장 작은 첫번째 짝수를 찾아서 출력하세요
     const n = 1;
     const m = 10;

@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    2차원 배열
-    */
+  2차원 배열
+  */
     const numbers = [
         [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
         [3, 6, 9],
@@ -21,8 +21,8 @@
     console.log("2차원 배열 2, 2은?: ", numbers[2][2]); // 12
     console.log("2차원 배열 3, 3은?: ", numbers[3][3]); // 20
     /*
-    합계를 구하는 명령어
-    */
+  합계를 구하는 명령어
+  */
     let sum = 0;
     let lengths = 0;
     for (let i = 0; i < numbers.length; i++) {

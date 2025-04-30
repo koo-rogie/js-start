@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    new Object() - 생성자 함수로 객체 생성
-    */
+  new Object() - 생성자 함수로 객체 생성
+  */
     const userName = "구성연";
     const userNo = 13;
     const gender = "female";
