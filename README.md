@@ -10,7 +10,8 @@ git clone https://github.com/koo-rogie/js-start.git
 js-start
 ├─ .vscode                => # 선생님 파일 수정 금지
 ├─ PPT
-├─ boj                    => # 백준 문제 그 외 다수
+├─ boj                    => # 백준 문제
+├─ progrmmers             => # 프로그래머스
 ├─ workspace
 │  ├─ ch01                => # JS 기초
 │  ├─ ch02                => # 함수
@@ -18,6 +19,7 @@ js-start
 │  ├─ ch04                => # 캐시 및 클로저, 클래스
 │  ├─ ch05                => # DOM 객체
 │  ├─ ch06                => # TypeScript
+│  ├─ ch07                => # 내장 함수, 내장 객체
 │  ├─ css
 │  ├─ img
 │  ├─ js
