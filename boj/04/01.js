@@ -46,28 +46,15 @@
  */
 function getData() {
   const fs = require("fs");
-  return fs
-    .readFileSync(0)
-    .toString()
-    .trim()
-    .split("\n")
-    .map((row) =>
-      row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val)))
-    );
+  return fs.readFileSync(0).toString().trim().split("\n").map((row) => row.split(" ").map((val) => (isNaN(val) ? val : parseInt(val))));
 }
-
 function main() {
-  const data = getData();
-  // data에서 값을 꺼내서 문제 해결하는 코드 작성
-  //   첫째 줄에 정수의 개수 N(1 ≤ N ≤ 100)이 주어진다.
-  const n = data[0];
-  // 둘째 줄에는 정수가 공백으로 구분되어져있다.
-  const v = data[1].split(" ");
-  // 셋째 줄에는 찾으려고 하는 정수 v가 주어진다.
-  let sumTrue = 0;
-
-  for (let i = 0; i <= n; i++) {
-
-  }
+const data = getData();
+let n = data[0][0];
+let number = data[1];
+let filler = data[2][0];
+let sum = 0;
+for (let elem of number) {if (elem === filler) {sum++;}}
+console.log(sum);
 }
 main();
