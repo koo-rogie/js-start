@@ -1,8 +1,14 @@
 {
   "scripts": {
-    "start": "live-server workspace --port=3000 --host=localhost"
+    "start": "live-server workspace --port=3000 --host=localhost",
+    "build:ch06": "tsc -p workspace/ch06",
+    "build:ch07": "tsc -p workspace/ch07",
+    "build:all": "npm run build:ch06 && npm run build:ch07"
   },
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13"
   }
 }
