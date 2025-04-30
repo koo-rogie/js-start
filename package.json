@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "live-server workspace --port=3000 --host=localhost",
+    "restart": "live-server workspace/ts-refactoring --port=3000 --host=localhost",
     "build:ch01": "tsc -p workspace/ts-refactoring/ch01",
     "build:ch02": "tsc -p workspace/ts-refactoring/ch02",
     "build:ch03": "tsc -p workspace/ts-refactoring/ch03",

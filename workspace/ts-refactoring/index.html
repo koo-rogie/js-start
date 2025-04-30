@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript 실습</title>
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.js"></script>
+    <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script>
+    <script src="https://unpkg.com/dayjs@1.11.13/dayjs.min.js"></script>
+    <script src="js/mylib.js"></script>
+    <script>
+      jQuery(function ($) {
+        // 1) 챕터 열기/접기
+        $(".chapter-title").click(function () {
+          const open = JSON.parse(localStorage.getItem("openChapter")) || [];
+          const $chap = $(this).parent();
+          const idx = $chap.index();
+          if ($chap.toggleClass("chapter-open").hasClass("chapter-open")) {
+            $(this).children("button").text("예제목록 접기");
+            open.push(idx);
+          } else {
+            $(this).children("button").text("예제목록 펼치기");
+            open.splice(open.indexOf(idx), 1);
+          }
+          localStorage.setItem("openChapter", JSON.stringify(open));
+        });
+        (JSON.parse(localStorage.getItem("openChapter")) || []).forEach((i) => {
+          $(".chapter").eq(i).addClass("chapter-open");
+        });
+
+        // 2) 링크 변환 함수
+        function toTS($a) {
+          const [chap, file] = $a.attr("href").split("/");
+          $a.attr("href", `ts-refactoring/${chap}/js/${file}`);
+        }
+        function toJS($a) {
+          const href = $a
+            .attr("href")
+            .replace(/^ts-refactoring\//, "")
+            .replace(/\/js\//, "/");
+          $a.attr("href", href);
+        }
+
+        // 3) 토글 함수
+        function toggleTS() {
+          localStorage.setItem("isTS", "yes");
+          $(".main-contents").addClass("ts");
+          $('.paragraph > ul a[href^="ch"]').each(function () {
+            toTS($(this));
+          });
+        }
+        function toggleJS() {
+          localStorage.removeItem("isTS");
+          $(".main-contents").removeClass("ts");
+          $('.paragraph > ul a[href*="ts-refactoring"]').each(function () {
+            toJS($(this));
+          });
+        }
+
+        // 4) 초기 모드 설정
+        if (localStorage.getItem("isTS") === "yes") {
+          $("#language-toggle").prop("checked", true);
+          toggleTS();
+        }
+
+        // 5) 토글 이벤트
+        $("#language-toggle").change(function () {
+          $(this).is(":checked") ? toggleTS() : toggleJS();
+        });
+
+        // 6) 예제 실행
+        $(".paragraph > ul a").click(function (e) {
+          const url = $(this).attr("href");
+          if (url.endsWith(".js")) {
+            e.preventDefault();
+            console.clear();
+            console.log(`<<< ${$(this).text()} 실행(${url}) >>>`);
+            $.get(url, "text").done((data) => {
+              const code = data.trim();
+              console.log(code, "\n\n");
+              const s = document.createElement("script");
+              s.type = "module";
+              s.textContent = code;
+              $("#script-result").empty().append(s);
+            });
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="example-title">Javascript 실습</h1>
+      </header>
+      <div class="main-contents">
+        <section class="chapter">
+          <div class="chapter-title">
+            <h3 tabindex="0">1강: 자바스크립트 기초 문법</h3>
+            <button>예제목록 펼치기</button>
+          </div>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.1 자바스크립트 실행</h4>
+            <ul>
+              <li><a href="ch01/ex01-01.html">01-01 인라인 자바스크립트</a></li>
+              <li><a href="ch01/ex01-02.html">01-02 외부 자바스크립트 파일 로드</a></li>
+              <li><a href="ch01/ex01-03.html">01-03 웹 페이지 파싱 순서</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.2 기본 데이터 타입</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-04.js">01-04 명령문과 주석</a></li>
+              <li><a href="ch01/js/ex01-05.js">01-05 변수 선언</a></li>
+              <li><a href="ch01/js/ex01-06.js">01-06 기본 데이터 타입 - Number, String, Boolean, undefined, null</a></li>
+              <li><a href="ch01/js/ex01-07-01.js">01-07 기본 데이터 타입 - BigInt</a></li>
+              <li><a href="ch01/js/ex01-07-02.js">01-07-02 기본 데이터 타입 - Symbol</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.3 연산자</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-08-01.js">01-08 산술 연산자 +, -, *, /, %, **</a></li>
+              <li><a href="ch01/js/ex01-08-02.js">01-08-02 산술 연산자 - 산술 연산자를 사용하여 계산된 결과를 출력</a></li>
+              <li><a href="ch01/js/ex01-09-01.js">01-09 대입 연산자 =, +=, -=, *=, /=, %=, **=</a></li>
+              <li><a href="ch01/js/ex01-09-02.js">01-09-02 대입 연산자 - 1부터 10까지의 모든 수의 합계</a></li>
+              <li><a href="ch01/js/ex01-10-01.js">01-10 증감 연산자 a++, a--, ++a, --a</a></li>
+              <li><a href="ch01/js/ex01-10-02.js">01-10-02 증감 연산자 - x, y 값 계산</a></li>
+              <li><a href="ch01/js/ex01-11-01.js">01-11 비교 연산자 >, >=, <, <=, ==, !=, ===, !==</a></li>
+              <li><a href="ch01/js/ex01-11-02.js">01-11-02 비교 연산자 - 다음 값들을 비교한 결과를 예측</a></li>
+              <li><a href="ch01/js/ex01-12.js">01-12 동등 연산자와 일치 연산자의 차이</a></li>
+              <li><a href="ch01/js/ex01-13.js">01-13 논리 연산자 &&, ||, !</a></li>
+              <li><a href="ch01/js/ex01-14.js">01-14 삼항 연산자 ?</a></li>
+              <li><a href="ch01/js/ex01-14-02.js">01-14-02 삼항 연산자 - 홀수/짝수 판별(node 명령어로 실행)</a></li>
+              <li><a href="ch01/js/ex01-15.js">01-15 연산자 우선순위</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.4 조건문</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-16.js">01-16 if문</a></li>
+              <li><a href="ch01/js/ex01-16-02.js">01-16-02 if문을 사용하여 학점 출력</a></li>
+              <li><a href="ch01/js/ex01-16-03.js">01-16-03 if문을 이용하여 사용자와 로그인 상태 출력</a></li>
+              <li><a href="ch01/js/ex01-17.js">01-17 if-else문</a></li>
+              <li><a href="ch01/js/ex01-17-02.js">01-17-02 if-else문을 사용하여 학점 출력</a></li>
+              <li><a href="ch01/js/ex01-17-03.js">01-17-03 if-else문을 사용하여 사용자와 로그인 상태 출력</a></li>
+              <li><a href="ch01/js/ex01-18.js">01-18 if-else if문</a></li>
+              <li><a href="ch01/js/ex01-18-02.js">01-18-02 if-else if문을 사용하여 학점 출력</a></li>
+              <li><a href="ch01/js/ex01-18-03.js">01-18-03 if-else if문을 사용하여 사용자와 로그인 상태 출력</a></li>
+              <li><a href="ch01/js/ex01-18-04.js">01-18-04 if-else if문을 사용하여 정보처리 기사 필기 시험 결과 출력</a></li>
+              <li><a href="ch01/js/ex01-18-05.js">01-18-05 if-else if문을 사용하여 계산기, 요일, 계절 출력</a></li>
+              <li><a href="ch01/js/ex01-19.js">01-19 switch문</a></li>
+              <li><a href="ch01/js/ex01-19-02.js">01-19-02 switch문을 사용하여 학점 출력</a></li>
+              <li><a href="ch01/js/ex01-19-03.js">01-19-03 switch문을 사용하여 계산기, 요일, 계절 출력</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.5 반복문</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-20-01.js">01-20 while문</a></li>
+              <li><a href="ch01/js/ex01-20-02.js">01-20-02 while문을 사용하여 홀수/짝수 합계 구하기</a></li>
+              <li><a href="ch01/js/ex01-20-03.js">01-20-03 while문을 사용하여 쌀알 모으기</a></li>
+              <li><a href="ch01/js/ex01-20-04.js">01-20-04 do-while문</a></li>
+              <li><a href="ch01/js/ex01-21-01.js">01-21 for문</a></li>
+              <li><a href="ch01/js/ex01-21-02.js">01-21-02 for문을 사용하여 별찍기</a></li>
+              <li><a href="ch01/js/ex01-21-03.js">01-21-03 for문을 이용해서 구구단 작성</a></li>
+              <li><a href="ch01/js/ex01-22.js">01-22 break, continue</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.6 참조 데이터 타입(Object, 객체)</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-23-01.js">01-23 new Object() - 생성자 함수로 객체 생성</a></li>
+              <li><a href="ch01/js/ex01-23-02.js">01-23-01 회원 정보를 객체로 저장</a></li>
+              <li><a href="ch01/js/ex01-23-03.js">01-23-02 국어, 영어, 수학 총점과 평균 출력</a></li>
+              <li><a href="ch01/js/ex01-24-01.js">01-24 JSON 표기법 - 리터럴 방식으로 객체 생성</a></li>
+              <li><a href="ch01/js/ex01-24-02.js">01-24-02 총점과 평균을 메서드로 작성</a></li>
+              <li><a href="ch01/js/ex01-25.js">01-25 객체의 속성 관리</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.7 참조 데이터 타입(Array, 배열)</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-26.js">01-26 배열 생성, 읽기, 쓰기</a></li>
+              <li><a href="ch01/js/ex01-27.js">01-27 모든 요소 읽기 1 - for 루프, for...of, for...in</a></li>
+              <li><a href="ch01/js/ex01-28.js">01-28 유사 배열 객체</a></li>
+              <li><a href="ch01/js/ex01-29-01.js">01-29 2차원 배열</a></li>
+              <li><a href="ch01/js/ex01-29-02.js">01-29-02 2차원 배열 - 멋사 부트캠프 수강생 관리</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.8 참조 데이터 타입(Function, 함수)</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-30.js">01-30 기본 함수</a></li>
+              <li><a href="ch01/js/ex01-31.js">01-31 매개변수를 가진 함수</a></li>
+              <li><a href="ch01/js/ex01-32.js">01-32 매개변수를 가진 함수 - 도어락</a></li>
+              <li><a href="ch01/js/ex01-33.js">01-33 반환값이 있는 함수</a></li>
+              <li><a href="ch01/js/ex01-34.js">01-34 반환값이 있는 함수 - 토스터</a></li>
+              <li><a href="ch01/js/ex01-35.js">01-35 최대값 반환 함수</a></li>
+              <li><a href="ch01/js/ex01-36.js">01-36 배열의 모든 요소를 출력하는 함수</a></li>
+              <li><a href="ch01/js/ex01-37-01.js">01-37 Call by Value와 Call by Reference 차이</a></li>
+              <li><a href="ch01/js/ex01-37-02.js">01-37-02 함수 호출과 콜 스택</a></li>
+              <li><a href="ch01/js/ex01-38.js">01-38 전역 변수와 지역 변수</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">1.9 ECMA Script6</h4>
+            <ul>
+              <li><a href="ch01/js/ex01-39.js">01-39 변수 선언문 var, let, const</a></li>
+              <li><a href="ch01/js/ex01-40.js">01-40 Template literals</a></li>
+              <li><a href="ch01/js/ex01-41.js">01-41 구조 분해 할당(Destructuring assignment)</a></li>
+              <li><a href="ch01/js/ex01-42.js">01-42 기본값 매개변수(Default parameters)</a></li>
+              <li><a href="ch01/js/ex01-43.js">01-43 나머지 매개변수(Rest parameters)</a></li>
+              <li><a href="ch01/js/ex01-44.js">01-44 전개 구문(Spread syntax)</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="chapter">
+          <div class="chapter-title">
+            <h3 tabindex="0">2강: 자바스크립트 함수</h3>
+            <button>예제목록 펼치기</button>
+          </div>
+          <section class="paragraph">
+            <h4 class="paragraph-title">2.1 일급 객체</h4>
+            <ul>
+              <li><a href="ch02/js/ex02-01.js">02-01 변수, 배열 엘리먼트, 다른 객체의 프로퍼티에 함수 할당</a></li>
+              <li><a href="ch02/js/ex02-02.js">02-02 함수를 다른 함수의 인자로 전달</a></li>
+              <li><a href="ch02/js/ex02-03.js">02-03 함수를 다른 함수의 리턴값으로 활용</a></li>
+              <li><a href="ch02/js/ex02-04.js">02-04 함수도 객체처럼 프로퍼티를 가질 수 있다.</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">2.2 함수 생성</h4>
+            <ul>
+              <li><a href="ch02/js/ex02-05.js">02-05 선언문</a></li>
+              <li><a href="ch02/js/ex02-06.js">02-06 표현식 - 익명함수</a></li>
+              <li><a href="ch02/js/ex02-07.js">02-07 표현식 - 기명함수</a></li>
+              <li><a href="ch02/js/ex02-08.js">02-08 표현식 - 기명함수 사용(팩토리얼 함수)</a></li>
+              <li><a href="ch02/js/ex02-09.js">02-09 Function 생성자 함수</a></li>
+              <li><a href="ch02/js/ex02-10-01.js">02-10 화살표 함수</a></li>
+              <li><a href="ch02/js/ex02-10-02.js">02-10-02 화살표 함수 - 배열 메서드에서 사용</a></li>
+              <li><a href="ch02/js/ex02-11-01.js">02-11 선언문 방식과 함수 호이스팅</a></li>
+              <li><a href="ch02/js/ex02-11-02.js">02-11-02 선언문 방식과 함수 호이스팅(실제 호출되는 순서에 맞춰서)</a></li>
+              <li><a href="ch02/js/ex02-12-01.js">02-12 변수 호이스팅</a></li>
+              <li><a href="ch02/js/ex02-12-02.js">02-12-02 표현식 방식과 함수 호이스팅</a></li>
+              <li><a href="ch02/js/ex02-12-03.js">02-12-03 표현식 방식과 함수 호이스팅(실제 호출되는 순서에 맞춰서)</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">2.3 함수 호출과 this</h4>
+            <ul>
+              <li><a href="ch02/js/ex02-13-01.js">02-13 매개변수와 인자수, arguments</a></li>
+              <li><a href="ch02/js/ex02-13-02.js">02-13-02 arguments 대신 나머지 매개변수 사용</a></li>
+              <li><a href="ch02/js/ex02-14.js">02-14 함수 호출 방법 1 - 일반 함수</a></li>
+              <li><a href="ch02/js/ex02-15.js">02-15 함수 호출 방법 2 - 메서드</a></li>
+              <li><a href="ch02/js/ex02-16.js">02-16 함수 호출 방법 2 - 메서드(화살표 함수)</a></li>
+              <li><a href="ch02/js/ex02-17-01.js">02-17 함수 내부의 this 바인딩 문제</a></li>
+              <li><a href="ch02/js/ex02-17-02.js">02-17-01 함수 내부의 this 바인딩 문제 해결</a></li>
+              <li><a href="ch02/js/ex02-17-03.js">02-17-02 함수 내부의 this 바인딩 문제 해결(call)</a></li>
+              <li><a href="ch02/js/ex02-17-04.js">02-17-03 함수 내부의 this 바인딩 문제 해결(화살표 함수)</a></li>
+              <li><a href="ch02/js/ex02-17-05.js">02-17-04 함수 내부의 this 바인딩 문제 해결(bind)</a></li>
+              <li><a href="ch02/js/ex02-18-01.js">02-18 가변 인자 처리 - apply() 활용</a></li>
+              <li><a href="ch02/js/ex02-18-02.js">02-18-02 가변 인자 처리 - 전개 연산자 활용</a></li>
+              <li><a href="ch02/js/ex02-19.js">02-19 생성자 함수</a></li>
+              <li><a href="ch02/js/ex02-20.js">02-20 생성자 함수 활용</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">2.4 함수 패턴</h4>
+            <ul>
+              <li><a href="ch02/ex02-21.html">02-21 익명함수와 콜백함수</a></li>
+              <li><a href="ch01/js/ex02-22.js">02-22 배열 다루기</a></li>
+              <li><a href="ch01/js/ex02-22-01.js">02-22-01 배열 다루기 - for 문 사용</a></li>
+              <li><a href="ch01/js/ex02-22-02.js">02-20-02 배열 다루기 - 배열 메서드(고차함수) 사용</a></li>
+              <li><a href="ch01/js/ex02-22-03.js">02-20-03 배열 다루기 - 3</a></li>
+              <li><a href="ch01/js/ex02-22-04.js">02-20-04 배열 다루기 - 4</a></li>
+              <li><a href="ch01/js/ex02-23.js">02-23 소수 판별 (메모이제이션)</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="chapter">
+          <div class="chapter-title">
+            <h3 tabindex="0">3강: 프로토타입, 상속과 클래스</h3>
+            <button>예제목록 펼치기</button>
+          </div>
+          <section class="paragraph">
+            <h4 class="paragraph-title">3.1 프로토타입</h4>
+            <ul>
+              <li><a href="ch03/js/ex03-01.js">03-01 prototype 속성 - Score 생성자 함수</a></li>
+              <li><a href="ch03/js/ex03-02.js">03-02 함수를 중복으로 정의 - User 생성자 함수</a></li>
+              <li><a href="ch03/js/ex03-03.js">03-03 prototype으로 함수의 중복을 제거 - User 생성자 함수</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">3.2 상속과 클래스</h4>
+            <ul>
+              <li><a href="ch03/js/ex03-04.js">03-04 프로토타입 체인을 이용한 상속 기능 구현 - HighSchool, College 생성자 함수</a></li>
+              <li><a href="ch03/js/ex03-05.js">03-05 중계 클래스를 이용한 상속 - HighSchool, College 생성자 함수</a></li>
+              <li><a href="ch03/js/ex03-06.js">03-06 클래스 정의와 상속 - HighSchool, College 클래스</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="chapter">
+          <div class="chapter-title">
+            <h3 tabindex="0">4강: 클로저</h3>
+            <button>예제목록 펼치기</button>
+          </div>
+          <section class="paragraph">
+            <h4 class="paragraph-title">4.1 클로저</h4>
+            <ul>
+              <li><a href="ch04/js/ex04-01.js">04-01 클로저를 사용하는 예제</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">4.2 클로저 용법</h4>
+            <ul>
+              <li><a href="ch04/js/ex04-02.js">04-02 클로저를 활용한 private 변수</a></li>
+              <li><a href="ch04/js/ex04-03.js">04-03 커링</a></li>
+              <li><a href="ch04/js/ex04-03-01.js">04-03-01 커링 사용 사례</a></li>
+              <li><a href="ch04/js/ex04-03-02.js">04-03-02 curry() 함수 작성</a></li>
+              <li><a href="ch04/js/ex04-04.js">04-04 Partial application</a></li>
+              <li><a href="ch04/js/ex04-04-01.js">04-04-01 Function.prototype.partial() 함수 추가</a></li>
+              <li><a href="ch04/js/ex04-05.js">04-05 Wrapper - 메모이제이션</a></li>
+              <li><a href="ch04/js/ex04-06.js">04-06 Wrapper - 메모이제이션, 클로저</a></li>
+            </ul>
+          </section>
+          <section class="paragraph">
+            <h4 class="paragraph-title">4.3 즉시실행 함수</h4>
+            <ul>
+              <li><a href="ch04/js/ex04-07.js">04-07 즉시실행 함수</a></li>
+              <li><a href="ch04/ex04-08.html">04-08 즉시실행 함수가 필요한 예제 (클로저)</a></li>
+            </ul>
+          </section>
+        </section>
+      </div>
+      <footer class="footer">
+        <p>Copyrightⓒ Javascript. All rights reserved.</p>
+      </footer>
+    </div>
+    <div id="script-result"></div>
+  </body>
+</html>
