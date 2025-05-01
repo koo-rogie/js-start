@@ -3,25 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>곱셈</title>
+    <title>todo인가..</title>
+    <link rel="stylesheet" href="./text.css" />
   </head>
   <body>
-    <header>
-      <h1>곱셈 해보기</h1>
-    </header>
-    <div id="app">
-      <div>
-        <label for="firstNum">첫번째 숫자</label>
-        <input type="text" id="firstNum" />
-        <label for="secondNum">두번째 숫자</label>
-        <input type="text" id="secondNum"/>
-        <button type="button">곱하기</button>
-      </div>
-      <div class="multiplyNum">
-        <span>결과: </span>
-        <span>여기</span>
+    <div class="padding">
+      <header>
+        <h1>추가해보기</h1>
+      </header>
+      <div id="app">
+        <div class="input-box">
+          <label for="text" class="sr-only">아래 들어가라잉</label>
+          <input type="text" id="text" autofocus />
+          <button class="addList">목록 추가</button>
+          <button class="removeList">전체 목록 제거</button>
+        </div>
+        <ul class="text-list"></ul>
       </div>
     </div>
+
+    <h2>1시 00분까지 쉬는시간</h2>
     <script src="./test-1.js"></script>
   </body>
 </html>
