@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    반환값이 있는 함수 - 토스터
-    */
+  반환값이 있는 함수 - 토스터
+  */
     function toaster(time, bread) {
         return time + "초 동안 구어진 " + bread;
     }

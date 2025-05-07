@@ -5,9 +5,9 @@ Symbol
 */
 
   // string
-  var s1 = "hello";
-  var s2 = "world";
-  var s3 = "hello";
+  var s1: string = "hello";
+  var s2: string = "world";
+  var s3: string = "hello";
 
   console.log(s1 === s2); // false
   console.log(s2 === s3); // false

@@ -4,7 +4,7 @@
     function a(n1) {
         console.log("2. a 시작.", n1); // 2번
         const n2 = b(n1); // 2.5번
-        console.log("7. a 종료.", n2); // => 7번..??? 왜??? 
+        console.log("7. a 종료.", n2); // => 7번..??? 왜???
     }
     function b(n3) {
         console.log("3. b 시작.", n3); // 3번

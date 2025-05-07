@@ -5,7 +5,7 @@
 
 
 // 티니핑의 이름을 전달 받아서 "hello"를 앞에 붙여 출력한다
-function sayHello(pingName) {
+function sayHello(pingName:string) {
   // 옵션부여
   console.log("Hello " + pingName);
 }

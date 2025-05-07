@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-      함수 생성 4 (화살표 함수 표현식)
-    */
+    함수 생성 4 (화살표 함수 표현식)
+  */
     // 기존 함수
     let add = function (x, y) {
         return x + y;

@@ -13,6 +13,7 @@
   // 산술 연산자 우선
   // 비교 연산자 나중
   (result as unknown as boolean) = 5 + 3 > 6 * 2;
+  // result as boolean  = 5 + 3 > 6 * 2;
   console.log(`산술 연산자 우선, 비교 연산자 나중: ${result}`);
 
   // 논리 연산자

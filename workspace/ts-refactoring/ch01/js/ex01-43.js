@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    나머지 매개변수(Rest parameters)
-    */
+  나머지 매개변수(Rest parameters)
+  */
     function fn(...args) {
         console.log(args);
         for (let arg of args) {

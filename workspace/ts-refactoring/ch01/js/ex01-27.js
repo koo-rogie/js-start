@@ -36,8 +36,8 @@
     console.log("짝수 합계", evenSum); // 짝수 합계 출력
     // -------------------------------------------------------
     // for or
-    for (let emel of arr) {
-        console.log("for of", emel);
+    for (let elem of arr) {
+        console.log("for of", elem);
     }
     // -------------------------------------------------------
     // for in

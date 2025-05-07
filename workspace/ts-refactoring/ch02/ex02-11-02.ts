@@ -9,7 +9,7 @@
 // 호이스팅 단계에서 함수를 생성
 // 선언문 방식의 함수 정의
 
-function add(x, y) {
+function add(x: number, y: number): number {
   return x + y;
 }
 

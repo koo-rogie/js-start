@@ -23,7 +23,7 @@
   let oddSum: number = 0; // 홀수 합계
   let evenSum: number = 0; // 짝수 합계
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i: number = 0; i < arr.length; i++) {
     if (arr[i] % 2 === 1) {
       // 배열 모든 요소의 홀수 합계를 출력
       oddSum += arr[i]; // 홀수 합계
@@ -42,8 +42,8 @@
   // -------------------------------------------------------
 
   // for or
-  for (let emel of arr) {
-    console.log("for of", emel);
+  for (let elem of arr) {
+    console.log("for of", elem);
   }
 
   // -------------------------------------------------------

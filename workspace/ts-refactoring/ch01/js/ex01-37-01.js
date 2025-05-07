@@ -1,8 +1,8 @@
 "use strict";
 (() => {
     /*
-    Call by Value와 Call by Reference 차이
-    */
+  Call by Value와 Call by Reference 차이
+  */
     //TODO 이거 그림 그려보기
     function add10(data1, data2) {
         data1 += 10;

@@ -1,9 +1,9 @@
 "use strict";
 (() => {
     /*
-    * 함수 호출 방법 2 - 메서드
-      - this는 메서드를 정의한 객체
-    */
+  * 함수 호출 방법 2 - 메서드
+    - this는 메서드를 정의한 객체
+  */
     // window.name = "global"; // window 브라우저가 가지고 있는 전역 객체
     // global.name = "global"; // node.js가 가지고 있는 전역 객체
     globalThis.name = "global"; // 브라우저면 window로 인식하고 node.js는 global로 인식함
@@ -11,7 +11,7 @@
         return this.name;
         // 화살표 함수를 만들면 this를 생성하지 않음
     };
-    const baro = new Object();
+    const baro = {};
     baro.name = "바로핑";
     baro.age = 9;
     baro.getName = getPingName;
