@@ -4,40 +4,47 @@
  * @returns {HTMLLIElement}
  */
 function getElem(item) {
-  // li, span 요소들을 생성
+  // li 생성
   const liElem = document.createElement("li"); // 새 <li> 요소 생성
-  const noElem = document.createElement("span"); // 번호 표시용 <span> 생성
-  const titleElem = document.createElement("span"); // 제목 표시용 <span> 생성
-  const delElem = document.createElement("button"); // 삭제버튼 <button> 생성
-  const togElem = document.createElement("button"); // 토글버튼 <button> 생성
+  liElem.dataset.no = item.no; // data-no 속성에 item.no 할당
+  liElem.dataset.done = item.done; // data-no 속성에 item.done 할당
 
-  // 텍스트 노드 생성
-  const numElme = document.createTextNode(item.no); // item.no 값을 텍스트 노드로
-  const textElme = document.createTextNode(item.title); // item.title 값을 텍스트 노드로
+  // 번호 표시 span
+  const noElem = document.createElement("span"); // 번호 표시용 <span> 생성
+  const numNode = document.createTextNode(item.no); // item.no 값을 텍스트 노드로
+  noElem.setAttribute("aria-label", `${item.no}번째`); // 번호 span에 aria-label 추가
+  noElem.appendChild(numNode); // 번호 span에 번호 텍스트 추가
+
+  // 제목 표시 span
+  let titleElem = document.createElement("span"); // 제목 표시용 <span> 생성
+  const textNode = document.createTextNode(item.title); // item.title 값을 텍스트 노드로
+  titleElem.setAttribute("title", `${item.title}`); // 제목 span에 aria-label 추가
+  titleElem.appendChild(textNode); // 제목 span에 제목 텍스트 추가
+
+  // 삭제버튼 button
+  const delElem = document.createElement("button"); // 삭제버튼 <button> 생성
   const delText = document.createTextNode("삭제");
-  const togtext = document.createTextNode("완료");
-  
-  // span에 텍스트 노드 붙이기
-  noElem.appendChild(numElme); // 번호 span에 번호 텍스트 추가
-  titleElem.appendChild(textElme); // 제목 span에 제목 텍스트 추가
+  delElem.setAttribute("title", "버튼을 눌러 삭제하시겠습니까?"); // 제목 span에 title 추가
   delElem.appendChild(delText); // 제목 span에 제목 텍스트 추가
+
+  // 완료버튼 button
+  const togElem = document.createElement("button"); // 토글버튼 <button> 생성
+  const togtext = document.createTextNode("완료");
+  togElem.setAttribute("title", "버튼을 눌러 완료하시겠습니까?"); // 제목 span에 title 추가
   togElem.appendChild(togtext); // 제목 span에 제목 텍스트 추가
 
-  // 접근성 향상을 위한 aria-label 설정
-  noElem.setAttribute("aria-label", `${item.no}번째`); // 번호 span에 aria-label 추가
-  titleElem.setAttribute("title", `${item.title}`); // 제목 span에 aria-label 추가
-  delElem.setAttribute("title", "버튼을 눌러 삭제하시겠습니까?"); // 제목 span에 title 추가
-  togElem.setAttribute("title", "버튼을 눌러 완료하시겠습니까?"); // 제목 span에 title 추가
+  // 수정버튼 button
+  const renamElem = document.createElement("button"); // 토글버튼 <button> 생성
+  const renamtext = document.createTextNode("수정");
+  renamElem.setAttribute("title", "버튼을 눌러 수정하시겠습니까?"); // 제목 span에 title 추가
+  renamElem.appendChild(renamtext); // 제목 span에 제목 텍스트 추가
 
   // li 요소에 span들 붙이기
   liElem.appendChild(noElem); // li에 번호 span 추가
   liElem.appendChild(titleElem); // li에 제목 span 추가
   liElem.appendChild(delElem); // li에 제목 span 추가
-  liElem.appendChild(togElem); // li에 제목 span 추가
-
-  // 데이터 속성에 번호 저장
-  liElem.dataset.no = item.no; // data-no 속성에 item.no 할당
-  liElem.dataset.done = item.done; // data-no 속성에 item.done 할당
+  liElem.appendChild(togElem); // li에 완료 button 추가
+  liElem.appendChild(renamElem); // li에 수정 button 추가
 
   // 삭제
   delElem.addEventListener("click", function (e) {
@@ -46,9 +53,23 @@ function getElem(item) {
     deleteItem(liNode.dataset.no);
   });
 
+  // 완료
+  togElem.addEventListener("click", function () {
+    console.log("선택이 됐냐");
+  });
+
+  // 수정
+  renamElem.addEventListener("click", function () {
+    titleElem = document.createElement("input");
+    console.log("선택이 됐냐");
+  });
+
   return liElem; // 구성된 li 요소 반환
 }
 
+/**
+ * updateNum 삭제 버튼을 클릭하면 앞의 no의 순서 최신화시킴
+ */
 function updateNum() {
   const items = document.querySelectorAll(".text-list li");
   items.forEach((elem, i) => {
@@ -59,6 +80,11 @@ function updateNum() {
     span.setAttribute("aria-label", `${no}번째`);
   });
 }
+
+/**
+ *
+ * @param {*} no -deleteItem li의 data-no의 번호를 선택해서 부모 li의 숫
+ */
 function deleteItem(no) {
   const li = document.querySelector(`.text-list>li[data-no="${no}"]`);
   if (li) {
@@ -66,6 +92,7 @@ function deleteItem(no) {
     updateNum();
   }
 }
+
 /**
  * 입력창의 값이 비어있지 않으면 새 아이템을 추가
  * @returns {void}

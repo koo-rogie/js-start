@@ -19,7 +19,7 @@ button {
 .padding {
   max-width: 600px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 header {
@@ -71,10 +71,14 @@ ul li {
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
+  background-color: #5e5e5e;
+  padding: 0.75rem;
+  border-radius: 50px;
 }
 
 ul li button {
-  padding: 0.25rem;
+  padding: 8px;
+  border-radius: 50px;
 }
 
 ul li button:hover {
@@ -88,7 +92,14 @@ ul li span:first-child {
 }
 
 ul li span:nth-child(2) {
-  width: 25rem;
+  width: 20rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+ul li span:nth-child(2).nohidden {
+  overflow: visible;
+  text-wrap: wrap;
 }
 
 ul .line span:nth-child(2) {
