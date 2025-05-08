@@ -1,6 +1,23 @@
 // 에러 핸들링 - try...catch 문
 // ex08-02.ts 복사
 
-(()=>{
-  
+(() => {
+  function f1() {
+    try {
+      const fn = new Function('x', 'y', 'retrun x + y');
+      console.log(fn(10, 20));
+    } catch (arr) {
+      // 기본적으로 catch에 전달되는 에러는 unknow이 됨
+      if (arr instanceof Error) {
+        console.error('에러발생', arr.message);
+      }
+    }
+  }
+
+  function f2() {
+    f1();
+  }
+
+  f2();
+  console.log('프로그램 종료');
 })();
