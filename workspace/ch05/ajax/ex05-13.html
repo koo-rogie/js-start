@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX</title>
-  <script type="module" src="./ex05-13.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX</title>
+    <script type="module" src="./js/ex05-13.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        padding-inline: 100px;
+        text-align: center;
+      }
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        list-style: none;
+        gap: 0.625rem;
+        padding-block: 10px;
+      }
+      button {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        width: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
   </head>
   <body>
     <h1>AJAX 통신(Fetch API 사용)</h1>
     <button>이미지 요청</button>
     <ul id="cat-list"></ul>
   </body>
-  </html>
+</html>
